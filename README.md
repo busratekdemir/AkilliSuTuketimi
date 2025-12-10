@@ -1,1 +1,2 @@
 .
+izsu su analizi
