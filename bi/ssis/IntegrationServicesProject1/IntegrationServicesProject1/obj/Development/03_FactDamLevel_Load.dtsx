@@ -1,0 +1,479 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/21/2025 3:00:50 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-LIK6F4J"
+  DTS:CreatorName="DESKTOP-LIK6F4J\DELL"
+  DTS:DTSID="{E840D68D-B32C-4C91-AA41-F4C3931F8A54}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1010.2"
+  DTS:LocaleID="1055"
+  DTS:ObjectName="03_FactDamLevel_Load"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{8FE8797B-35FA-4CF0-A818-57B39296B564}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-LIK6F4J.SmartWaterDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{C3E1A004-EAC0-4C5C-8149-06014F8BDB62}"
+      DTS:ObjectName="DESKTOP-LIK6F4J.SmartWaterDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-LIK6F4J;Initial Catalog=SmartWaterDW;Provider=SQLOLEDB.1;Integrated Security=SSPI;Application Name=SSIS-03_FactDamLevel_Load-{C3E1A004-EAC0-4C5C-8149-06014F8BDB62}DESKTOP-LIK6F4J.SmartWaterDW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_Load_FactDamLevel"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3D87E207-E0D9-48E9-9663-38E44D913F5E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_Load_FactDamLevel"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_Load_FactDamLevel\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[FactDamLevel]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1254</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LIK6F4J.SmartWaterDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LIK6F4J.SmartWaterDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DamKey]"
+                      cachedDataType="i4"
+                      cachedName="DamKey"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DamKey]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DamKey]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DolulukOrani]"
+                      cachedDataType="numeric"
+                      cachedName="DolulukOrani"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DolulukOrani]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DolulukOrani]" />
+                    <inputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SuMiktari]"
+                      cachedDataType="numeric"
+                      cachedName="SuMiktari"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SuMiktari]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[SuMiktari]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FactDamLevelId]"
+                      dataType="i4"
+                      name="FactDamLevelId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DamKey]"
+                      dataType="i4"
+                      name="DamKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DolulukOrani]"
+                      dataType="numeric"
+                      name="DolulukOrani"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SuMiktari]"
+                      dataType="numeric"
+                      name="SuMiktari"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_Load_FactDamLevel\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DateKey, DamKey, DolulukOrani, SuMiktari
+FROM dbo.FactDamLevel;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1254</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-LIK6F4J.SmartWaterDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-LIK6F4J.SmartWaterDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateKey]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DamKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DamKey]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DamKey]"
+                      name="DamKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DolulukOrani]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DolulukOrani]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[DolulukOrani]"
+                      name="DolulukOrani"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[SuMiktari]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SuMiktari]"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].Columns[SuMiktari]"
+                      name="SuMiktari"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DamKey]"
+                      dataType="i4"
+                      name="DamKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[DolulukOrani]"
+                      dataType="numeric"
+                      name="DolulukOrani"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[SuMiktari]"
+                      dataType="numeric"
+                      name="SuMiktari"
+                      precision="18"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DateKey]"
+                      name="DateKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DamKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DamKey]"
+                      name="DamKey" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DolulukOrani]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[DolulukOrani]"
+                      name="DolulukOrani"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SuMiktari]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[SuMiktari]"
+                      name="SuMiktari"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_Load_FactDamLevel.Paths[OLE DB Source Output]"
+              endId="Package\DFT_Load_FactDamLevel\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_Load_FactDamLevel\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="197.6,41.6"
+          Id="Package\DFT_Load_FactDamLevel"
+          TopLeft="88.5714287599739,66.5294117063903" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_Load_FactDamLevel">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="149.6,41.6"
+          Id="Package\DFT_Load_FactDamLevel\OLE DB Source"
+          TopLeft="85.0000001809427,45.1176470192761" />
+        <NodeLayout
+          Size="170.4,41.6"
+          Id="Package\DFT_Load_FactDamLevel\OLE DB Destination"
+          TopLeft="92.8571430548113,143.764705756338" />
+        <EdgeLayout
+          Id="Package\DFT_Load_FactDamLevel.Paths[OLE DB Source Output]"
+          TopLeft="159.800000180943,86.7176470192761">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.2571428738687,57.0470587370615"
+              Start="0,0"
+              End="18.2571428738687,49.5470587370615">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5235293685307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5235293685307"
+                    Point2="0,28.5235293685307"
+                    Point3="4,28.5235293685307" />
+                  <mssgle:LineSegment
+                    End="14.2571428738687,28.5235293685307" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.2571428738687,28.5235293685307"
+                    Point2="18.2571428738687,28.5235293685307"
+                    Point3="18.2571428738687,32.5235293685307" />
+                  <mssgle:LineSegment
+                    End="18.2571428738687,49.5470587370615" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_FactDamLevel\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_Load_FactDamLevel\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

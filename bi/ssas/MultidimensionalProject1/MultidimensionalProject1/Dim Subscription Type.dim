@@ -1,0 +1,139 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="05f3a8bb-b43e-446b-885d-0ca07aa84326" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Subscription Type</ID>
+  <Name>Dim Subscription Type</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="44ea4a7a-0d57-437b-9657-a58e22808d91">
+    <DataSourceViewID>Smart Water DW</DataSourceViewID>
+  </Source>
+  <ErrorConfiguration dwd:design-time-name="758d0a75-2f64-41d1-a6bf-86e19c35d306">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="52bba9c9-daca-4fa7-9520-bda8ced100bc">
+      <ID>Subscription Type Key</ID>
+      <Name>Subscription Type Key</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="60e73f70-c8b8-41e4-b542-cd4e1d738544">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4cf49a36-051f-4df6-adf8-03a59669f10e">
+            <TableID>dbo_DimSubscriptionType</TableID>
+            <ColumnID>SubscriptionTypeKey</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="2c5d1ad6-4fdd-4844-80b2-fae82a7b67c3">
+          <AttributeID>Abonelik Grubu</AttributeID>
+          <Name>Abonelik Grubu</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="7b11e68f-d717-40bc-8adb-a7beb0edc38e">
+          <AttributeID>Abonelik Turu</AttributeID>
+          <Name>Abonelik Turu</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="b17abcd4-bc1c-45f9-ae81-bf0d63411fed">
+          <AttributeID>Abone Tipi</AttributeID>
+          <Name>Abone Tipi</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="78d1d9e0-3554-437f-8d13-cdae3bda4d40">
+      <ID>Abonelik Grubu</ID>
+      <Name>Abonelik Grubu</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="2fed44cb-1cb2-4180-833a-4c6fbe8b3b69">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4eb3810c-02f4-4d87-a14d-f0fc311ecd5f">
+            <TableID>dbo_DimSubscriptionType</TableID>
+            <ColumnID>AbonelikGrubu</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="e8eecb90-20d5-40bc-9a13-37d47ef632d4">
+      <ID>Abonelik Turu</ID>
+      <Name>Abonelik Turu</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="867eff36-dd4e-47f9-8c5c-bf0e6e754cc8">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9a19093b-5f7d-47e4-9f77-9b798631fbaa">
+            <TableID>dbo_DimSubscriptionType</TableID>
+            <ColumnID>AbonelikTuru</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="be345b87-feec-4928-b2fe-d7fa70e796b2">
+      <ID>Abone Tipi</ID>
+      <Name>Abone Tipi</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bf90c7b2-93dd-4275-b613-d8c8c58cd97f">
+          <DataType>WChar</DataType>
+          <DataSize>150</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="809662ba-778c-4f0d-81fb-6edf139f6645">
+            <TableID>dbo_DimSubscriptionType</TableID>
+            <ColumnID>AboneTipi</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

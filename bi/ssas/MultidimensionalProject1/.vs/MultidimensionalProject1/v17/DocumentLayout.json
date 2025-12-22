@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Smart Water DW.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Smart Water DW.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Smart Water DW.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Smart Water DW.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Water Source.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Dim Water Source.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Dam.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Dim Dam.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Subscription Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Dim Subscription Type.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Location.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Dim Location.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{756A978D-5F5C-C8EA-EF12-C3D83FF8A7E5}|MultidimensionalProject1\\MultidimensionalProject1.dwproj|solutionrelative:MultidimensionalProject1\\Dim Date.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 182,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Smart Water DW.dsv [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Smart Water DW.dsv",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Smart Water DW.dsv",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Smart Water DW.dsv [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Smart Water DW.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T09:44:49.888Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Smart Water DW.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Smart Water DW.cube",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Smart Water DW.cube",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Smart Water DW.cube [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Smart Water DW.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T10:10:39.205Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dim Water Source.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Water Source.dim",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Dim Water Source.dim",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Water Source.dim [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Dim Water Source.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T10:08:24.762Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dim Dam.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Dam.dim",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Dim Dam.dim",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Dam.dim [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Dim Dam.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T10:08:03.887Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dim Subscription Type.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Subscription Type.dim",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Dim Subscription Type.dim",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Subscription Type.dim [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Dim Subscription Type.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T10:07:43.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dim Location.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Location.dim",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Dim Location.dim",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Location.dim [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Dim Location.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T10:04:03.004Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dim Date.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Date.dim",
+              "RelativeDocumentMoniker": "MultidimensionalProject1\\Dim Date.dim",
+              "ToolTip": "C:\\Users\\DELL\\source\\repos\\MultidimensionalProject1\\MultidimensionalProject1\\Dim Date.dim [Design]",
+              "RelativeToolTip": "MultidimensionalProject1\\Dim Date.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-19T10:01:03.837Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

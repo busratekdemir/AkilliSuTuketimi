@@ -1,0 +1,290 @@
+﻿<DataSourceView xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="2747b432-e28b-4d13-bb6e-4cf3f6baa656" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Smart Water DW</ID>
+  <Name>Smart Water DW</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:CurrentLayout</Name>
+      <Value>_ALL_TABLES_</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:SchemaRestriction</Name>
+      <Value></Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:RetrieveRelationships</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:Layouts</Name>
+      <Value>
+        <Layouts xmlns="">
+          <Diagram>
+            <Name>_ALL_TABLES_</Name>
+            <DiagramLayout />
+            <ShowRelationshipNames>False</ShowRelationshipNames>
+            <UseDiagramDefaultLayout>True</UseDiagramDefaultLayout>
+            <DiagramViewPortLeft>0</DiagramViewPortLeft>
+            <DiagramViewPortTop>0</DiagramViewPortTop>
+            <DiagramBoundingLeft>0</DiagramBoundingLeft>
+            <DiagramBoundingTop>0</DiagramBoundingTop>
+            <DiagramZoom>100</DiagramZoom>
+          </Diagram>
+        </Layouts>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <DataSourceID>Smart Water DW</DataSourceID>
+  <Schema>
+    <xs:schema id="Smart_x0020_Water_x0020_DW" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+      <xs:element name="Smart_x0020_Water_x0020_DW" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:design-time-name="ca05789f-c07c-482d-8dcc-bcdd4bfb1062">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="dbo_DimDam" msprop:DbTableName="DimDam" msprop:FriendlyName="DimDam" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="d5be8538-d783-4454-b783-1fc0b6fe9135">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DamKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="DamKey" msprop:DbColumnName="DamKey" msprop:design-time-name="81015978-d510-4b5b-ab5f-ab18631ef7cf" type="xs:int" />
+                  <xs:element name="DamName" msprop:FriendlyName="DamName" msprop:DbColumnName="DamName" msprop:design-time-name="4c0fa5f4-771c-4d21-a2e9-90ae7e678c5b">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimDistrict" msprop:DbTableName="DimDistrict" msprop:FriendlyName="DimDistrict" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="3eeb7e59-3a36-4345-9692-8e4af7b5e825">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DistrictKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="DistrictKey" msprop:DbColumnName="DistrictKey" msprop:design-time-name="ebc339fc-2a24-4461-944e-be44c490010f" type="xs:int" />
+                  <xs:element name="DistrictName" msprop:FriendlyName="DistrictName" msprop:DbColumnName="DistrictName" msprop:design-time-name="d3817392-adbb-4d3a-963a-04c45ca744a4">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimLocation" msprop:DbTableName="DimLocation" msprop:FriendlyName="DimLocation" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="d550846f-c5f4-4cd3-8a0b-8c18658ec9b2">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="LocationKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="LocationKey" msprop:DbColumnName="LocationKey" msprop:design-time-name="b5f61f87-9b4e-47f3-937e-f5e7efd8cf5a" type="xs:int" />
+                  <xs:element name="Ilce" msprop:FriendlyName="Ilce" msprop:DbColumnName="Ilce" msprop:design-time-name="5409e06c-3358-4209-b59b-d29b4e9edc6e">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="Mahalle" msprop:FriendlyName="Mahalle" msprop:DbColumnName="Mahalle" msprop:design-time-name="60c45d64-9da3-46ed-bd57-e137a25c0eb5">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimSubscriptionType" msprop:DbTableName="DimSubscriptionType" msprop:FriendlyName="DimSubscriptionType" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="e96c08a8-b169-495f-b58b-cb0fab1c8cbd">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="SubscriptionTypeKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="SubscriptionTypeKey" msprop:DbColumnName="SubscriptionTypeKey" msprop:design-time-name="87ba4797-fd30-410b-8ec3-78e764d61a7f" type="xs:int" />
+                  <xs:element name="AbonelikGrubu" msprop:FriendlyName="AbonelikGrubu" msprop:DbColumnName="AbonelikGrubu" msprop:design-time-name="76728341-3514-4e56-b541-f698bc0e0d7d">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="100" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="AbonelikTuru" msprop:FriendlyName="AbonelikTuru" msprop:DbColumnName="AbonelikTuru" msprop:design-time-name="47daac97-23b8-4a69-a50d-b812cb95a037">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="50" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                  <xs:element name="AboneTipi" msprop:FriendlyName="AboneTipi" msprop:DbColumnName="AboneTipi" msprop:design-time-name="35057fc7-bd0a-4d14-a0a0-3975f6d0dd20">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimDate" msprop:DbTableName="DimDate" msprop:FriendlyName="DimDate" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="bedc3a02-036e-48e1-be10-30e8d1d51096">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="DateKey" msprop:FriendlyName="DateKey" msprop:DbColumnName="DateKey" msprop:design-time-name="320344f2-525e-4cde-ae37-caa900944583" type="xs:int" />
+                  <xs:element name="Yil" msprop:FriendlyName="Yil" msprop:DbColumnName="Yil" msprop:design-time-name="854afcc6-bea6-4fb7-b8c0-8c4fe571ad81" type="xs:int" />
+                  <xs:element name="Ay" msprop:FriendlyName="Ay" msprop:DbColumnName="Ay" msprop:design-time-name="650af8bd-0720-4147-bc98-c15f2f83100f" type="xs:int" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_DimWaterSource" msprop:DbTableName="DimWaterSource" msprop:FriendlyName="DimWaterSource" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="c3b5e758-00da-4653-947d-6566cbbe09ac">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="WaterSourceKey" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="WaterSourceKey" msprop:DbColumnName="WaterSourceKey" msprop:design-time-name="269d574d-b3fd-4d7f-997a-cb8968b85e4c" type="xs:int" />
+                  <xs:element name="WaterSourceName" msprop:FriendlyName="WaterSourceName" msprop:DbColumnName="WaterSourceName" msprop:design-time-name="9d1a30dd-bca1-42d4-9189-b68c18d1e77e">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:maxLength value="150" />
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_FactConsumption" msprop:DbTableName="FactConsumption" msprop:FriendlyName="FactConsumption" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="bbd1cff8-4827-474f-8a0b-5a701710481a">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FactConsumptionId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="FactConsumptionId" msprop:DbColumnName="FactConsumptionId" msprop:design-time-name="29c86876-3682-45fb-8e77-3f2d2536242c" type="xs:int" />
+                  <xs:element name="DateKey" msprop:FriendlyName="DateKey" msprop:DbColumnName="DateKey" msprop:design-time-name="ace1a939-5892-48aa-b1ef-1e95f9f528e1" type="xs:int" />
+                  <xs:element name="LocationKey" msprop:FriendlyName="LocationKey" msprop:DbColumnName="LocationKey" msprop:design-time-name="f9376586-30e3-49ef-b24d-b2fd95b6b446" type="xs:int" />
+                  <xs:element name="SubscriptionTypeKey" msprop:FriendlyName="SubscriptionTypeKey" msprop:DbColumnName="SubscriptionTypeKey" msprop:design-time-name="678db920-ee8f-4ab7-a0b6-598e43d15d04" type="xs:int" />
+                  <xs:element name="AboneAdedi" msprop:FriendlyName="AboneAdedi" msprop:DbColumnName="AboneAdedi" msprop:design-time-name="d3385671-d9ec-4d57-b061-99d6005caa31" type="xs:int" minOccurs="0" />
+                  <xs:element name="OrtalamaTuketim" msprop:FriendlyName="OrtalamaTuketim" msprop:DbColumnName="OrtalamaTuketim" msprop:design-time-name="2b2aa8b3-8c36-4fa9-8310-08dc19b167c4" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="ToplamTuketim" msprop:FriendlyName="ToplamTuketim" msprop:DbColumnName="ToplamTuketim" msprop:design-time-name="25e20a62-5c34-4bc1-94f6-b09628547524" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_FactDamLevel" msprop:DbTableName="FactDamLevel" msprop:FriendlyName="FactDamLevel" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="1c5712ea-022b-4767-880a-7c823dcb4f7e">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FactDamLevelId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="FactDamLevelId" msprop:DbColumnName="FactDamLevelId" msprop:design-time-name="fe9452b5-a9a0-4bf1-a76d-4ad2591a54f1" type="xs:int" />
+                  <xs:element name="DateKey" msprop:FriendlyName="DateKey" msprop:DbColumnName="DateKey" msprop:design-time-name="4e5617c2-f710-415e-a82b-e0bb2e644eaf" type="xs:int" />
+                  <xs:element name="DamKey" msprop:FriendlyName="DamKey" msprop:DbColumnName="DamKey" msprop:design-time-name="3f3b81fd-97d4-4cb7-9170-68a8d7e33e47" type="xs:int" />
+                  <xs:element name="DolulukOrani" msprop:FriendlyName="DolulukOrani" msprop:DbColumnName="DolulukOrani" msprop:design-time-name="01e6c9d3-e324-45d4-9e50-7e74dfdec9e9" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SuMiktari" msprop:FriendlyName="SuMiktari" msprop:DbColumnName="SuMiktari" msprop:design-time-name="677dd02d-27ff-4a8d-bd57-f33c8e79e0dc" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_FactWaterLosses" msprop:DbTableName="FactWaterLosses" msprop:FriendlyName="FactWaterLosses" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="8e017f46-322f-44c6-9271-2102d8459cf8">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FactWaterLossId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="FactWaterLossId" msprop:DbColumnName="FactWaterLossId" msprop:design-time-name="ce3b2072-d823-4b1d-addf-3053b572c541" type="xs:int" />
+                  <xs:element name="DateKey" msprop:FriendlyName="DateKey" msprop:DbColumnName="DateKey" msprop:design-time-name="245b0cb5-9faa-4387-8192-d3897a570bf2" type="xs:int" />
+                  <xs:element name="DistrictKey" msprop:FriendlyName="DistrictKey" msprop:DbColumnName="DistrictKey" msprop:design-time-name="b130e54b-8d6d-4783-8b62-44c0981a7a32" type="xs:int" />
+                  <xs:element name="TeminServisBaglantisiKayip" msprop:FriendlyName="TeminServisBaglantisiKayip" msprop:DbColumnName="TeminServisBaglantisiKayip" msprop:design-time-name="92a8577d-8e8c-48c5-850f-3d225aeddbdf" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FizikiKayiplar" msprop:FriendlyName="FizikiKayiplar" msprop:DbColumnName="FizikiKayiplar" msprop:design-time-name="b1b78536-265a-4c0a-b0d5-4763419a7771" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="IzinliTuketim" msprop:FriendlyName="IzinliTuketim" msprop:DbColumnName="IzinliTuketim" msprop:design-time-name="cdb35d8f-6b63-41e9-b961-ace1297d2c37" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FaturalanmayanIzinliTuketim" msprop:FriendlyName="FaturalanmayanIzinliTuketim" msprop:DbColumnName="FaturalanmayanIzinliTuketim" msprop:design-time-name="d2ae1ff9-9746-4a62-a5f2-e8eae4d530c1" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="GelirGetirmeyenSuMiktari" msprop:FriendlyName="GelirGetirmeyenSuMiktari" msprop:DbColumnName="GelirGetirmeyenSuMiktari" msprop:design-time-name="eb175d90-57a7-49cd-abd6-2824b7d4e676" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FaturalananOlculmeyenKullanim" msprop:FriendlyName="FaturalananOlculmeyenKullanim" msprop:DbColumnName="FaturalananOlculmeyenKullanim" msprop:design-time-name="bc5ed28f-ddcb-48d3-bad4-b7e23b992512" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FaturalanmayanOlculmeyenKullanim" msprop:FriendlyName="FaturalanmayanOlculmeyenKullanim" msprop:DbColumnName="FaturalanmayanOlculmeyenKullanim" msprop:design-time-name="dfd29a9f-23be-47b6-96bc-84ed89c5a3b1" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SayaclardakiOlcumHatasi" msprop:FriendlyName="SayaclardakiOlcumHatasi" msprop:DbColumnName="SayaclardakiOlcumHatasi" msprop:design-time-name="de4a7993-7e4c-477c-bd69-c64ad4a33172" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SuMiktari" msprop:FriendlyName="SuMiktari" msprop:DbColumnName="SuMiktari" msprop:design-time-name="740ba592-816e-46c4-975b-c082e7150319" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FaturalananOlculenKullanim" msprop:FriendlyName="FaturalananOlculenKullanim" msprop:DbColumnName="FaturalananOlculenKullanim" msprop:design-time-name="2da1715a-6f98-4835-b6f8-7f0840aeae27" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="IdariKayiplar" msprop:FriendlyName="IdariKayiplar" msprop:DbColumnName="IdariKayiplar" msprop:design-time-name="f568494a-8f11-4fc5-b41b-94137f11174e" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="IzinsizTuketim" msprop:FriendlyName="IzinsizTuketim" msprop:DbColumnName="IzinsizTuketim" msprop:design-time-name="0fd6e3d8-ccc0-4c99-9080-33c97858edde" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FaturalananIzinliSuTuketimi" msprop:FriendlyName="FaturalananIzinliSuTuketimi" msprop:DbColumnName="FaturalananIzinliSuTuketimi" msprop:design-time-name="997021c4-1ab6-48f7-a238-a36c08b3bcb0" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="FaturalanmayanOlculenKullanim" msprop:FriendlyName="FaturalanmayanOlculenKullanim" msprop:DbColumnName="FaturalanmayanOlculenKullanim" msprop:design-time-name="701d46cb-6c72-48b7-b321-814689b1ca48" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="GelirGetirenSuMiktari" msprop:FriendlyName="GelirGetirenSuMiktari" msprop:DbColumnName="GelirGetirenSuMiktari" msprop:design-time-name="8cb39295-e014-448d-8c4e-71e393552964" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="DepolardaKacak" msprop:FriendlyName="DepolardaKacak" msprop:DbColumnName="DepolardaKacak" msprop:design-time-name="0e4bf994-cc8e-4840-b8da-da4b45fa315c" type="xs:decimal" minOccurs="0" />
+                  <xs:element name="SuKayiplari" msprop:FriendlyName="SuKayiplari" msprop:DbColumnName="SuKayiplari" msprop:design-time-name="444578de-f90f-4721-96dc-cfd96de1688f" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="dbo_FactWaterProductionBySource" msprop:DbTableName="FactWaterProductionBySource" msprop:FriendlyName="FactWaterProductionBySource" msprop:TableType="Table" msprop:DbSchemaName="dbo" msprop:design-time-name="267fc74e-5266-458c-9766-10eeb7d3653f">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="FactWaterProductionId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:FriendlyName="FactWaterProductionId" msprop:DbColumnName="FactWaterProductionId" msprop:design-time-name="807829a1-bb1d-4436-87c1-e524c0443c21" type="xs:int" />
+                  <xs:element name="DateKey" msprop:FriendlyName="DateKey" msprop:DbColumnName="DateKey" msprop:design-time-name="b63f90db-8434-4925-b1c8-65a208976c12" type="xs:int" />
+                  <xs:element name="WaterSourceKey" msprop:FriendlyName="WaterSourceKey" msprop:DbColumnName="WaterSourceKey" msprop:design-time-name="bb3510cb-0a32-4956-bc64-a3d4c30c37e4" type="xs:int" />
+                  <xs:element name="UretilenSuMiktari" msprop:FriendlyName="UretilenSuMiktari" msprop:DbColumnName="UretilenSuMiktari" msprop:design-time-name="345e0276-742c-4e50-9328-8abbef939e31" type="xs:decimal" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimDam" />
+          <xs:field xpath="DamKey" />
+        </xs:unique>
+        <xs:unique name="dbo_DimDistrict_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimDistrict" />
+          <xs:field xpath="DistrictKey" />
+        </xs:unique>
+        <xs:unique name="dbo_DimLocation_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimLocation" />
+          <xs:field xpath="LocationKey" />
+        </xs:unique>
+        <xs:unique name="dbo_DimSubscriptionType_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimSubscriptionType" />
+          <xs:field xpath="SubscriptionTypeKey" />
+        </xs:unique>
+        <xs:unique name="dbo_DimDate_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimDate" />
+          <xs:field xpath="DateKey" />
+        </xs:unique>
+        <xs:unique name="dbo_DimWaterSource_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_DimWaterSource" />
+          <xs:field xpath="WaterSourceKey" />
+        </xs:unique>
+        <xs:unique name="dbo_FactConsumption_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_FactConsumption" />
+          <xs:field xpath="FactConsumptionId" />
+        </xs:unique>
+        <xs:unique name="dbo_FactDamLevel_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_FactDamLevel" />
+          <xs:field xpath="FactDamLevelId" />
+        </xs:unique>
+        <xs:unique name="dbo_FactWaterLosses_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_FactWaterLosses" />
+          <xs:field xpath="FactWaterLossId" />
+        </xs:unique>
+        <xs:unique name="dbo_FactWaterProductionBySource_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+          <xs:selector xpath=".//dbo_FactWaterProductionBySource" />
+          <xs:field xpath="FactWaterProductionId" />
+        </xs:unique>
+        <xs:keyref name="FK_FWP_Date" refer="dbo_DimDate_Constraint1">
+          <xs:selector xpath=".//dbo_FactWaterProductionBySource" />
+          <xs:field xpath="DateKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FWP_WS" refer="dbo_DimWaterSource_Constraint1">
+          <xs:selector xpath=".//dbo_FactWaterProductionBySource" />
+          <xs:field xpath="WaterSourceKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FWL_Dist" refer="dbo_DimDistrict_Constraint1">
+          <xs:selector xpath=".//dbo_FactWaterLosses" />
+          <xs:field xpath="DistrictKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FWL_Date" refer="dbo_DimDate_Constraint1">
+          <xs:selector xpath=".//dbo_FactWaterLosses" />
+          <xs:field xpath="DateKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FDL_Dam" refer="Constraint1">
+          <xs:selector xpath=".//dbo_FactDamLevel" />
+          <xs:field xpath="DamKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FDL_Date" refer="dbo_DimDate_Constraint1">
+          <xs:selector xpath=".//dbo_FactDamLevel" />
+          <xs:field xpath="DateKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FC_Loc" refer="dbo_DimLocation_Constraint1">
+          <xs:selector xpath=".//dbo_FactConsumption" />
+          <xs:field xpath="LocationKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FC_Sub" refer="dbo_DimSubscriptionType_Constraint1">
+          <xs:selector xpath=".//dbo_FactConsumption" />
+          <xs:field xpath="SubscriptionTypeKey" />
+        </xs:keyref>
+        <xs:keyref name="FK_FC_Date" refer="dbo_DimDate_Constraint1">
+          <xs:selector xpath=".//dbo_FactConsumption" />
+          <xs:field xpath="DateKey" />
+        </xs:keyref>
+      </xs:element>
+    </xs:schema>
+    <Smart_x0020_Water_x0020_DW xmlns="" />
+  </Schema>
+</DataSourceView>

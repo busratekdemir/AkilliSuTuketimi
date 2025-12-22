@@ -1,0 +1,672 @@
+﻿<Cube xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="7cf986ef-9c92-48fb-ba8a-1e2c26192dd0" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Smart Water DW</ID>
+  <Name>Smart Water DW</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Dimensions>
+    <Dimension dwd:design-time-name="94c78b5f-5f76-444f-b5d8-aa1e49c2005f">
+      <ID>Dim Date</ID>
+      <Name>Dim Date</Name>
+      <DimensionID>Dim Date</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="6cd526f4-7df6-475a-88f1-be6ea94d4e6c">
+          <AttributeID>Date Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="71f46221-de27-40a6-b862-7421d6b3cefe">
+          <AttributeID>Yil</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="122c997d-b879-4829-8c85-8f12a1aa8059">
+          <AttributeID>Ay</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="6971c510-3d15-4adb-8bf1-247a89d54804">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="a662a90d-eef5-487c-b527-fda2fcfd9994">
+      <ID>Dim Subscription Type</ID>
+      <Name>Dim Subscription Type</Name>
+      <DimensionID>Dim Subscription Type</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="1d7ff0de-227d-41df-8222-1102d977457d">
+          <AttributeID>Subscription Type Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="8ceb67f1-9bbd-443d-b998-947a9fcb9571">
+          <AttributeID>Abonelik Grubu</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="e79fd4e8-c50b-4d78-82f4-2c93b46bfe6e">
+          <AttributeID>Abonelik Turu</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4ba476f1-dd7e-4d9b-b7c6-9f7c4963df62">
+          <AttributeID>Abone Tipi</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="3d878c3f-5c04-43ca-944f-c58a35ba3a0b">
+      <ID>Dim Location</ID>
+      <Name>Dim Location</Name>
+      <DimensionID>Dim Location</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="7d4babcb-b75b-40f0-9cb3-abfadb806dca">
+          <AttributeID>Location Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="6a9cfbaa-8f8b-4700-84e6-0a08e3dc1826">
+          <AttributeID>Ilce</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="4fd59e44-b5e4-414d-8cb6-19415060a848">
+          <AttributeID>Mahalle</AttributeID>
+        </Attribute>
+      </Attributes>
+      <Hierarchies>
+        <Hierarchy dwd:design-time-name="9a3aa471-21b3-4cfc-8453-2f6b1c2a017d">
+          <HierarchyID>Hierarchy</HierarchyID>
+        </Hierarchy>
+      </Hierarchies>
+    </Dimension>
+    <Dimension dwd:design-time-name="568d82ea-a417-4c82-8f6a-e112deaad16b">
+      <ID>Dim Dam</ID>
+      <Name>Dim Dam</Name>
+      <DimensionID>Dim Dam</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="5ee37035-0e03-49f1-bed0-5465cb59939c">
+          <AttributeID>Dam Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="31ee6ed0-ef74-474b-ac9f-265c6fc3e767">
+          <AttributeID>Dam Name</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="4bd2f647-1452-4fa6-bca1-1192a8ca97af">
+      <ID>Dim District</ID>
+      <Name>Dim District</Name>
+      <DimensionID>Dim District</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="f6027913-ebc1-435a-8fbb-20f193a5c9aa">
+          <AttributeID>District Key</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+    <Dimension dwd:design-time-name="96e0eda8-23c0-4dfc-aee4-b7c93b6d3be1">
+      <ID>Dim Water Source</ID>
+      <Name>Dim Water Source</Name>
+      <DimensionID>Dim Water Source</DimensionID>
+      <Attributes>
+        <Attribute dwd:design-time-name="2285e86a-c8a5-40fe-b1b8-b11c332c4cb1">
+          <AttributeID>Water Source Key</AttributeID>
+        </Attribute>
+        <Attribute dwd:design-time-name="04642e9d-ceba-4793-a2b2-1dbe42b5b957">
+          <AttributeID>Water Source Name</AttributeID>
+        </Attribute>
+      </Attributes>
+    </Dimension>
+  </Dimensions>
+  <MeasureGroups>
+    <MeasureGroup dwd:design-time-name="db13a338-3883-4992-8d5c-91d9a7c077ed">
+      <ID>Fact Consumption</ID>
+      <Name>Fact Consumption</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="b1c4e25c-b1f0-4cbd-81d0-71b0d19fdada">
+          <ID>Abone Adedi</ID>
+          <Name>Abone Adedi</Name>
+          <Source dwd:design-time-name="5b6bd3cb-b481-410b-84da-d8954e886e87">
+            <DataType>Integer</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="89bd3d5f-da08-40a5-9048-f8d87b0f5129">
+              <TableID>dbo_FactConsumption</TableID>
+              <ColumnID>AboneAdedi</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="6c225c9b-4d03-4019-8246-888fe7b10828">
+          <ID>Ortalama Tuketim</ID>
+          <Name>Ortalama Tuketim</Name>
+          <Source dwd:design-time-name="35f4a063-059f-4257-9c25-91cb52b7ab49">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="82dcbe0d-a8f5-45c9-a50f-40b7848a2959">
+              <TableID>dbo_FactConsumption</TableID>
+              <ColumnID>OrtalamaTuketim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="db5e5cc7-6399-4516-b481-c277182b74e8">
+          <ID>Toplam Tuketim</ID>
+          <Name>Toplam Tuketim</Name>
+          <Source dwd:design-time-name="8762243d-16ed-493b-a625-928c9fda3ea2">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="07da7a3c-3681-4302-b0ca-645af673584e">
+              <TableID>dbo_FactConsumption</TableID>
+              <ColumnID>ToplamTuketim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="73cf7cca-37d5-4207-ae14-3f52c3631839">
+          <ID>Fact Consumption Count</ID>
+          <Name>Fact Consumption Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="15fcd56c-bcd8-443a-82f2-f89b27a5e5e3">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="d0b36433-93b5-4782-a56c-6994111c9743">
+              <TableID>dbo_FactConsumption</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="3087b1eb-773d-431d-9444-3e4f4a20b42c">
+          <CubeDimensionID>Dim Date</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="65d71af2-18cf-49d5-832a-e4a5bb974f32">
+              <AttributeID>Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="dc73fd61-5e96-47c4-b71d-9797eedcacd9">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="51205bf8-4f6e-4329-a0eb-c6a7afce1409">
+                    <TableID>dbo_FactConsumption</TableID>
+                    <ColumnID>DateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d02108a0-8a15-4cc6-859b-80cef69442fe">
+          <CubeDimensionID>Dim Subscription Type</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="14161062-eeaf-4c84-bb6c-c7787c626b3e">
+              <AttributeID>Subscription Type Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="da007868-b91a-4a68-abe0-061c5118189d">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="a897293a-6b8a-415b-b70c-3113d3b67367">
+                    <TableID>dbo_FactConsumption</TableID>
+                    <ColumnID>SubscriptionTypeKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="f4c4a258-240f-4745-be96-1ad6970f2633">
+          <CubeDimensionID>Dim Location</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="a62b43dd-262e-4fb9-a560-96d0c372f1f1">
+              <AttributeID>Location Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="173f1c6d-afba-4c6e-9460-cc82c46df564">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="fdfb0468-48fb-41a4-90b2-f4f02b9495f8">
+                    <TableID>dbo_FactConsumption</TableID>
+                    <ColumnID>LocationKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+    <MeasureGroup dwd:design-time-name="5054f4cf-e415-4f53-a0fc-ebc105852092">
+      <ID>Fact Dam Level</ID>
+      <Name>Fact Dam Level</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="ad9eba06-9556-4ee7-a3f6-41de2aaf47e2">
+          <ID>Doluluk Orani</ID>
+          <Name>Doluluk Orani</Name>
+          <Source dwd:design-time-name="a79f9fb8-3032-429a-ab42-9389340fbfb5">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="5225eeb5-9eb2-4ef4-bfd0-93fd4e436ad1">
+              <TableID>dbo_FactDamLevel</TableID>
+              <ColumnID>DolulukOrani</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="2069ff73-fad4-4186-ae2a-b2811b1797a5">
+          <ID>Su Miktari</ID>
+          <Name>Su Miktari</Name>
+          <Source dwd:design-time-name="37c40d5a-415b-4286-8e6a-bdda5d2f0551">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="2f68a93f-0167-436c-9342-e3ca85a2109e">
+              <TableID>dbo_FactDamLevel</TableID>
+              <ColumnID>SuMiktari</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="b27cb28a-7716-4399-939e-563aef60e92d">
+          <ID>Fact Dam Level Count</ID>
+          <Name>Fact Dam Level Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="6afa09fe-c20e-4096-a987-c867226ebc32">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="34a56634-dccd-4a17-90a6-0195a3f410b2">
+              <TableID>dbo_FactDamLevel</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="34fd823f-c494-468e-bbea-91c2d301755c">
+          <CubeDimensionID>Dim Date</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="68b2043c-133c-42f1-b36b-682079f58425">
+              <AttributeID>Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="dc6d0dbb-5e3c-4e9f-9201-b72d64fe177b">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="99549e56-a062-4898-82c8-fe54e9915dc6">
+                    <TableID>dbo_FactDamLevel</TableID>
+                    <ColumnID>DateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="9ea5c35d-91b1-4882-8ed5-0abc3d2131b0">
+          <CubeDimensionID>Dim Dam</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="dead5ee9-ea5b-4b80-b6df-b0ad9ba72616">
+              <AttributeID>Dam Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="70668f10-8b0b-4b37-9a31-8a20213a9fab">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="3d52ddc5-b02f-457d-b522-b4858ee4757c">
+                    <TableID>dbo_FactDamLevel</TableID>
+                    <ColumnID>DamKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+    <MeasureGroup dwd:design-time-name="68ef56bb-1413-4923-b437-c59f1104d8e4">
+      <ID>Fact Water Losses</ID>
+      <Name>Fact Water Losses</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="1444f209-07c4-4eaa-baae-a56346757e0c">
+          <ID>Temin Servis Baglantisi Kayip</ID>
+          <Name>Temin Servis Baglantisi Kayip</Name>
+          <Source dwd:design-time-name="effea5d7-d197-4a04-a66a-a32e8a41a51e">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="2f40ec29-0387-45b6-bada-ff69cccce67d">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>TeminServisBaglantisiKayip</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="9fa4b321-f575-4690-82ac-9fc80968e2f3">
+          <ID>Fiziki Kayiplar</ID>
+          <Name>Fiziki Kayiplar</Name>
+          <Source dwd:design-time-name="34c218b8-8032-4dc5-8fa4-ccbfdc341b53">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a8058c1b-1567-443d-8801-4ad8c7edc669">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FizikiKayiplar</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="28c2b503-4d49-44c7-a218-1939d23be323">
+          <ID>Izinli Tuketim</ID>
+          <Name>Izinli Tuketim</Name>
+          <Source dwd:design-time-name="032c525f-3e87-41d6-905a-45c30576ce0f">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="0139c678-7e71-4564-8d01-322dfc9c05c7">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>IzinliTuketim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="f06f64e6-d00b-4a27-9b2e-3ec4f75e4f1f">
+          <ID>Faturalanmayan Izinli Tuketim</ID>
+          <Name>Faturalanmayan Izinli Tuketim</Name>
+          <Source dwd:design-time-name="6a40a5ff-a616-4cf8-ac40-3d6fc1ffa77f">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e3f9b696-0474-4916-9c17-eb274a78f6ff">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FaturalanmayanIzinliTuketim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="633c9955-148d-47ed-b12e-86aaf3cc997f">
+          <ID>Gelir Getirmeyen Su Miktari</ID>
+          <Name>Gelir Getirmeyen Su Miktari</Name>
+          <Source dwd:design-time-name="23088f6d-6082-4dfe-9179-671174f5df7e">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="5688f937-21c1-4826-8aed-223bf7ca3cbb">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>GelirGetirmeyenSuMiktari</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="87c771b9-2c89-486a-a882-cadfc2e59ca4">
+          <ID>Faturalanan Olculmeyen Kullanim</ID>
+          <Name>Faturalanan Olculmeyen Kullanim</Name>
+          <Source dwd:design-time-name="c6976ab8-682a-4404-a599-62e3f5e893e0">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="147f8d14-ea06-4d91-a4a7-8087fbe77d01">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FaturalananOlculmeyenKullanim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="f4f5a853-4634-4757-805c-9121383c2391">
+          <ID>Faturalanmayan Olculmeyen Kullanim</ID>
+          <Name>Faturalanmayan Olculmeyen Kullanim</Name>
+          <Source dwd:design-time-name="a78135b4-7197-47b2-882f-dbd8ebce0e07">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="2e6e5a66-58e7-4039-a8b0-f3453b33b95b">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FaturalanmayanOlculmeyenKullanim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="e08977ab-c1e2-4c02-902d-9afb3debd69a">
+          <ID>Sayaclardaki Olcum Hatasi</ID>
+          <Name>Sayaclardaki Olcum Hatasi</Name>
+          <Source dwd:design-time-name="7ab94ef5-f199-48d4-babc-56628bb936c8">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="b7f7608a-6546-4f9f-b46d-ee8b5a40caf5">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>SayaclardakiOlcumHatasi</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="13905228-0858-4e1d-b585-7472388ba5d0">
+          <ID>Su Miktari - Fact Water Losses</ID>
+          <Name>Su Miktari - Fact Water Losses</Name>
+          <Source dwd:design-time-name="28199a88-7416-4967-b488-034b22adaaf2">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="2ed9f743-3b16-4e3c-8156-94d23bb0ba1c">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>SuMiktari</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="8c454385-d097-401d-bf74-54b09590093b">
+          <ID>Faturalanan Olculen Kullanim</ID>
+          <Name>Faturalanan Olculen Kullanim</Name>
+          <Source dwd:design-time-name="ce24c864-11b5-4f6f-9ba9-a6e75b425e61">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="63ad7f4d-c0ca-4a59-adbb-86c2577b39c3">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FaturalananOlculenKullanim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="71c45df7-5602-4226-8f2c-a9e880b93b91">
+          <ID>Idari Kayiplar</ID>
+          <Name>Idari Kayiplar</Name>
+          <Source dwd:design-time-name="9a8f9414-02e5-4f15-8fb4-85851c7e1d8e">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="d3644ab0-353b-4f44-a159-022c2ef82be6">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>IdariKayiplar</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="9b0ecdc3-3765-4f01-9d9e-a422d25118e9">
+          <ID>Izinsiz Tuketim</ID>
+          <Name>Izinsiz Tuketim</Name>
+          <Source dwd:design-time-name="b1ac7163-9b49-43c1-8537-7dc593401155">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="629c80f9-55f2-4c90-b504-9b6e1f60db54">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>IzinsizTuketim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="30c5f89d-c835-4534-a3e4-deed0b28ed6d">
+          <ID>Faturalanan Izinli Su Tuketimi</ID>
+          <Name>Faturalanan Izinli Su Tuketimi</Name>
+          <Source dwd:design-time-name="884ea7ff-9ca0-4ba0-ac85-63f15411670b">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="e21afd88-25f0-4a78-a001-e02075d89e7a">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FaturalananIzinliSuTuketimi</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="a61eda6e-42ff-4ebb-ab20-2d755c796e3f">
+          <ID>Faturalanmayan Olculen Kullanim</ID>
+          <Name>Faturalanmayan Olculen Kullanim</Name>
+          <Source dwd:design-time-name="e41e75da-6da0-4e29-8e7e-79751a7dc4c9">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="7efa0c74-d6ce-48c6-9d41-10f390502005">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>FaturalanmayanOlculenKullanim</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="d9579f14-a988-4033-ac78-70bf17eae880">
+          <ID>Gelir Getiren Su Miktari</ID>
+          <Name>Gelir Getiren Su Miktari</Name>
+          <Source dwd:design-time-name="dbaaa4bb-8126-4ea6-b434-367a0b373699">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="a2d40356-7692-40c5-b40a-644d46169188">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>GelirGetirenSuMiktari</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="645d2b65-c6cf-461a-9fc4-7ac86f454ed1">
+          <ID>Depolarda Kacak</ID>
+          <Name>Depolarda Kacak</Name>
+          <Source dwd:design-time-name="792aa55f-4769-46ff-95ad-4e64ad6411e0">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="13705e0a-3973-4fc3-95b1-98a36d1549bc">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>DepolardaKacak</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="46a27b98-0aca-43b7-8f74-5f72c8f1ad34">
+          <ID>Su Kayiplari</ID>
+          <Name>Su Kayiplari</Name>
+          <Source dwd:design-time-name="79ef3468-4e57-4819-8728-aba3f6b26b4c">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="0d744627-ae45-4a0c-afb1-75575caf13fe">
+              <TableID>dbo_FactWaterLosses</TableID>
+              <ColumnID>SuKayiplari</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="c7815c3e-0fd6-4407-b38c-6746e08b1467">
+          <ID>Fact Water Losses Count</ID>
+          <Name>Fact Water Losses Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="c0a912b4-ca5a-496a-999f-2889b31bc4e3">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="6d78d42b-723e-4145-9072-8c50897d822a">
+              <TableID>dbo_FactWaterLosses</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="ea5fe495-497c-44fa-be2e-289224176174">
+          <CubeDimensionID>Dim Date</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="1b3d384a-6313-4d1a-a872-71a63e98dde0">
+              <AttributeID>Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="d651a769-1bbf-42ec-98bf-30c3dc5ceabc">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="297b740b-4a03-4dd7-925f-15bd55154ce8">
+                    <TableID>dbo_FactWaterLosses</TableID>
+                    <ColumnID>DateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="4b50fd28-ce6e-468d-8a18-1c8b4f06901d">
+          <CubeDimensionID>Dim District</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="34eade26-a086-4321-b87c-7a8016ad3d7f">
+              <AttributeID>District Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="17c7397e-f535-4f8c-8c56-f72740a36595">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="6516a79c-2554-4f55-9592-11c1efb8bb95">
+                    <TableID>dbo_FactWaterLosses</TableID>
+                    <ColumnID>DistrictKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+    <MeasureGroup dwd:design-time-name="1f43ab01-0097-4032-82e2-235fcf9235d6">
+      <ID>Fact Water Production By Source</ID>
+      <Name>Fact Water Production By Source</Name>
+      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+      <State>Unprocessed</State>
+      <Measures>
+        <Measure dwd:design-time-name="648aa179-e59d-4514-94da-9eecbd55850e">
+          <ID>Uretilen Su Miktari</ID>
+          <Name>Uretilen Su Miktari</Name>
+          <Source dwd:design-time-name="81e4e601-69b7-4e99-a07b-b4adf043c725">
+            <DataType>Double</DataType>
+            <Source xsi:type="ColumnBinding" dwd:design-time-name="b5921ad6-816e-44bc-81bd-2d8773ba27b5">
+              <TableID>dbo_FactWaterProductionBySource</TableID>
+              <ColumnID>UretilenSuMiktari</ColumnID>
+            </Source>
+          </Source>
+        </Measure>
+        <Measure dwd:design-time-name="ec124feb-a86b-45c0-aeca-2f589b24668d">
+          <ID>Fact Water Production By Source Count</ID>
+          <Name>Fact Water Production By Source Count</Name>
+          <AggregateFunction>Count</AggregateFunction>
+          <Source dwd:design-time-name="5306f7d7-fa7d-45bc-a2d0-c6a326302f74">
+            <DataType>Integer</DataType>
+            <DataSize>4</DataSize>
+            <Source xsi:type="RowBinding" dwd:design-time-name="cd6a05e4-20a2-44c1-9d25-9b9a39b737c6">
+              <TableID>dbo_FactWaterProductionBySource</TableID>
+            </Source>
+          </Source>
+        </Measure>
+      </Measures>
+      <StorageMode>Molap</StorageMode>
+      <ProcessingMode>Regular</ProcessingMode>
+      <Dimensions>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="8930a298-4ac4-4d2f-b234-71c2e6eb1d65">
+          <CubeDimensionID>Dim Water Source</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="1f35b82d-6b1b-4ee2-9c69-2319a8d1b892">
+              <AttributeID>Water Source Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="4544f84e-d9ec-4bff-bd1d-c71b8d432684">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="797fea67-2eb7-4b69-896d-3a91c7412d1c">
+                    <TableID>dbo_FactWaterProductionBySource</TableID>
+                    <ColumnID>WaterSourceKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+        <Dimension xsi:type="RegularMeasureGroupDimension" dwd:design-time-name="d82e9f4c-3413-47e1-b352-a3057f28c1ab">
+          <CubeDimensionID>Dim Date</CubeDimensionID>
+          <Attributes>
+            <Attribute dwd:design-time-name="8fcd0ba6-c48d-47a1-b6ab-31c814cd08a6">
+              <AttributeID>Date Key</AttributeID>
+              <KeyColumns>
+                <KeyColumn dwd:design-time-name="d5f04166-8a57-401b-9b6d-8d2ccc712b6f">
+                  <DataType>Integer</DataType>
+                  <Source xsi:type="ColumnBinding" dwd:design-time-name="6eacc2ef-491c-42aa-b378-862f702bce6e">
+                    <TableID>dbo_FactWaterProductionBySource</TableID>
+                    <ColumnID>DateKey</ColumnID>
+                  </Source>
+                </KeyColumn>
+              </KeyColumns>
+              <Type>Granularity</Type>
+            </Attribute>
+          </Attributes>
+        </Dimension>
+      </Dimensions>
+      <Partitions />
+    </MeasureGroup>
+  </MeasureGroups>
+  <Source dwd:design-time-name="00a3afd2-7343-4d0e-92a0-b7f89218c5f2">
+    <DataSourceViewID>Smart Water DW</DataSourceViewID>
+  </Source>
+</Cube>
