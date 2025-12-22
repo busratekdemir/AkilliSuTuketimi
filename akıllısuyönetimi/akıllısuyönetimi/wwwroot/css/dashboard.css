@@ -1,0 +1,209 @@
+﻿/* ====================================
+   1. GENEL DÜZEN VE BODY AYARLARI
+   ==================================== */
+:root {
+    --sidebar-bg: #0b1a37;
+    --sidebar-color: #f4f7f6;
+    --primary-blue: #007bff; /* Mavi tonu */
+    --gray-text: #6c757d;
+    --background-light: #f4f7f6;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-light);
+}
+
+.main-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ====================================
+   2. SOL MENÜ (SIDEBAR) STİLLERİ
+   ==================================== */
+.sidebar-area {
+    width: 250px;
+    flex-shrink: 0;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-color);
+    padding: 10px 0;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+    .sidebar-area .logo-section {
+        padding: 0 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 10px;
+    }
+
+/* Sidebar Item (View Component içinde stil verilmelidir) */
+/* Örn: .nav-links li.active a { background-color: var(--primary-blue); color: white; } */
+
+
+/* Sistem Durumu Bölümü */
+.system-status {
+    margin-top: auto; /* En alta ittirir */
+    padding: 15px 15px 20px;
+    background-color: #0d234a; /* Daha koyu ton */
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* ====================================
+   3. ÜST ÇUBUK (TOP HEADER) STİLLERİ
+   ==================================== */
+.content-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-header {
+    background-color: white;
+    padding: 15px 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    width: 400px;
+}
+
+    .search-box i {
+        color: var(--gray-text);
+        margin-right: 10px;
+    }
+
+    .search-box input {
+        border: none;
+        outline: none;
+        background: transparent;
+        width: 100%;
+    }
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+    .user-info i {
+        font-size: 1.2em;
+        margin-left: 20px;
+        color: var(--gray-text);
+        cursor: pointer;
+    }
+
+.user-link {
+    font-size: 0.9em;
+    color: var(--gray-text);
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.user-avatar {
+    font-size: 2em !important;
+    color: var(--primary-blue) !important;
+    margin-left: 15px;
+}
+
+/* ====================================
+   4. ANA İÇERİK (MAIN PANEL) STİLLERİ
+   ==================================== */
+.main-panel-content {
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.main-panel-title {
+    font-size: 1.8em;
+    color: #343a40;
+    margin-bottom: 10px;
+}
+
+/* Row (Satır) İçi Boşluklar */
+.dashboard-cards-group,
+.dashboard-details-group {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+    .dashboard-cards-group > .col-md-3,
+    .dashboard-details-group > .col-md-8,
+    .dashboard-details-group > .col-md-4 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+/* ====================================
+   5. STAT CARD STİLLERİ
+   ==================================== */
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    }
+
+.card-header {
+    color: var(--gray-text);
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-value {
+    font-size: 2em;
+    font-weight: 600;
+    color: #343a40;
+}
+
+.card-body .icon {
+    font-size: 2.5em;
+    color: #007bff; /* Mavi ikon rengi */
+}
+
+/* Yüzde Değişim Yazısı */
+.card-footer {
+    padding-top: 10px;
+    font-size: 0.85em;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Durum Renkleri */
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}

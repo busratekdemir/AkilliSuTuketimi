@@ -1,0 +1,67 @@
+// tahmin.proto
+
+// Protocol Buffers sürümünü belirtiriz. Genellikle proto3 kullanılır.
+syntax = "proto3";
+
+// Servisimizin bulunacağı paketi tanımlarız.
+package tahmin_servisi;
+
+// =======================================================
+// 1. SERVICE TANIMI
+// =======================================================
+
+// Ana gRPC servisimiz. REST API'deki Prediction Controller'a benzer işler yapar.
+service PredictionService {
+    
+    // Yeni bir tahmin başlatma metodu.
+    // Kullanıcı ID'sini alır ve tahmin sonucunu döndürür.
+    rpc GetPrediction (PredictionRequest) returns (PredictionResponse);
+    
+    // Kullanıcının geçmiş tahminlerini getirme metodu.
+    // Kullanıcı ID'sini alır ve bir tahmin listesi döndürür.
+    rpc GetPredictionHistory (PredictionHistoryRequest) returns (PredictionHistoryList);
+}
+
+
+// =======================================================
+// 2. MESAJ (VERİ YAPISI) TANIMLARI
+// =======================================================
+
+// --- GetPrediction İçin Mesajlar ---
+
+// GetPrediction metodu için giriş mesajı (Kullanıcı ID'si token'dan alınacaktır)
+// REST API'deki gibi, sadece kimlik doğrulama için kullanıcı ID'si yeterlidir.
+message PredictionRequest {
+    // gRPC'de kimlik doğrulama metadata/başlık üzerinden yapılır.
+    // Kullanıcının ID'si, kimlik doğrulandıktan sonra sunucu tarafından kullanılır.
+    // Ancak, biz yine de istek mesajında bir kullanıcı ID'si taşıyabiliriz.
+    // Şimdilik sadece bir placeholder (yer tutucu) mesaj tanımlıyoruz.
+    // Kimlik doğrulama, sunucu tarafında (grpc_server.js) işlenecektir.
+}
+
+// GetPrediction metodu için çıkış mesajı (Tahmin sonucunu içerir)
+message PredictionResponse {
+    double prediction_result = 1; // Tahmin sonucu (Örn: Su tüketimi miktarı)
+    string message = 2;            // Bilgilendirme mesajı
+    int32 prediction_id = 3;       // Veritabanına kaydedilen kaydın ID'si
+}
+
+// --- GetPredictionHistory İçin Mesajlar ---
+
+// GetPredictionHistory için giriş mesajı
+message PredictionHistoryRequest {
+    // Yine placeholder, zira kimlik doğrulama meta'dan alınacaktır.
+}
+
+// Tek bir geçmiş tahmin kaydının yapısı
+message HistoricalPrediction {
+    int32 id = 1;
+    string prediction_date = 2;           // Tarih ve saat
+    string features_json = 3;             // Kullanılan giriş özellikleri (JSON dizesi olarak)
+    double prediction_result = 4;
+}
+
+// GetPredictionHistory metodu için çıkış mesajı (Liste)
+message PredictionHistoryList {
+    repeated HistoricalPrediction predictions = 1; // Tekrar eden alan (dizi)
+}

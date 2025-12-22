@@ -1,0 +1,53 @@
+﻿@model List<AlertDetail>
+
+<div class="alert-detail-list">
+    @foreach (var alert in Model)
+    {
+        @* alert-card sınıfı JavaScript'in kapsayıcıyı bulmasını sağlar *@
+        <div class="alert-card @alert.ColorClass">
+
+            <div class="card-header-row">
+                <div class="alert-type-info">
+                    <i class="bi @alert.IconClass"></i>
+                    <span class="alert-type">@alert.Type</span>
+                    <span class="severity-tag @alert.ColorClass">@alert.Severity</span>
+                </div>
+
+                @* DURUM ETİKETİ: JavaScript 'target-status' üzerinden burayı yakalar *@
+                <div class="status-tag @alert.ColorClass target-status">
+                    @if (alert.Status == "İnceleniyor")
+                    {
+                        <i class="bi bi-arrow-clockwise"></i> 
+                        @alert.Status
+                    }
+                    else if (alert.Status == "Bekliyor")
+                    {
+                        <i class="bi bi-clock"></i> 
+                        @alert.Status
+                    }
+                    else if (alert.Status == "Çözüldü")
+                    {
+                        <i class="bi bi-check-circle"></i> 
+                        @alert.Status
+                    }
+                </div>
+            </div>
+
+            <p class="alert-description">Sayaç: @alert.SayacNo &mdash; @alert.Description</p>
+
+            <div class="alert-details-row">
+                <div class="detail-item"><i class="bi bi-geo-alt-fill"></i> Lokasyon: <span>@alert.Location</span></div>
+                <div class="detail-item"><i class="bi bi-calendar-check"></i> Tespit Zamanı: <span>@alert.DetectionTime</span></div>
+                <div class="detail-item"><i class="bi bi-droplet"></i> Tüketim: <span>@alert.Consumption</span></div>
+            </div>
+
+            <div class="alert-actions">
+                @* js-detail-btn sınıfı eklendi *@
+                <button class="btn btn-dark btn-sm js-detail-btn">Detaylı İncele</button>
+
+                @* js-resolve-btn sınıfı eklendi *@
+                <button class="btn btn-success btn-sm js-resolve-btn">Çözüldü Olarak İşaretle</button>
+            </div>
+        </div>
+    }
+</div>

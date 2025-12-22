@@ -1,0 +1,65 @@
+﻿@model akıllısuyönetimi.Models.User
+
+@{
+    ViewData["Title"] = "Kullanıcıyı Sil: " + Model.FirstName + " " + Model.LastName;
+}
+
+<div class="container-fluid py-4">
+
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1><i class="bi bi-person-x-fill me-2 text-danger"></i> Kullanıcıyı Sil</h1>
+            </div>
+
+            <div class="alert alert-danger mb-4" role="alert">
+                <strong>⚠️ Dikkat:</strong> Bu işlemi geri alamazsınız. Kullanıcı ve onunla ilişkili tüm veriler (sayaçlar, tüketim kayıtları vb.) kalıcı olarak silinecektir.
+            </div>
+
+            <div class="card shadow-sm border-danger mb-4">
+                <div class="card-header bg-danger text-white">
+                    Silinecek Kullanıcı Bilgileri
+                </div>
+                <div class="card-body">
+
+                    <dl class="row">
+                        <dt class="col-sm-3">Adı Soyadı:</dt>
+                        <dd class="col-sm-9">@Model.FirstName @Model.LastName</dd>
+
+                        <dt class="col-sm-3">E-posta:</dt>
+                        <dd class="col-sm-9">@Model.Email</dd>
+
+                        <dt class="col-sm-3">Rolü:</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge @(Model.Role == "Admin" ? "bg-danger" : "bg-success")">
+                                @Model.Role
+                            </span>
+                        </dd>
+
+                        <dt class="col-sm-3">Kayıt Tarihi:</dt>
+                        <dd class="col-sm-9">@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
+                    </dl>
+
+                </div>
+            </div>
+
+            <form asp-action="Delete" method="post">
+
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" name="id" value="@Model.Id" />
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left"></i> Vazgeç
+                    </a>
+
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> SILME İŞLEMİNİ ONAYLA
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

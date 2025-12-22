@@ -1,0 +1,112 @@
+﻿@* Views/Shared/Components/Sidebar/Default.cshtml *@
+@using System.Security.Claims
+
+@{
+    var isAdmin = User.IsInRole("Admin");
+    var isClient = User.IsInRole("Client");
+
+    // Aktif sayfa bilgisini alıyoruz
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+    // Helper metot: Aktif link sınıfını döndürür
+    string IsActive(string controller, string action)
+    {
+        if (controller == currentController && action == currentAction)
+        {
+            return "active";
+        }
+        return "";
+    }
+}
+
+<div class="sidebar-content">
+
+    <div class="logo-area">
+        <i class="bi bi-droplet logo-icon"></i>
+        <span class="logo-text">IZSU Akıllı Su Yönetimi</span>
+    </div>
+
+    @* Tüm Kullanıcılar için Ortak Menü Öğeleri *@
+    <ul class="nav-links">
+        <li class="@IsActive("Home", "Index")">
+            <a asp-action="Index" asp-controller="Home">
+                <i class="bi bi-house-door"></i> Ana Panel
+            </a>
+        </li>
+    </ul>
+
+    @* ------------------------------------------------------------------- *@
+    @* YÖNETİCİ (ADMIN) MENÜSÜ - (Görsel 1'e Uyan Menüler) *@
+    @* ------------------------------------------------------------------- *@
+
+    @if (isAdmin)
+    {
+        <ul class="nav-links">
+            @* Yeni bir <ul> başlatıldı *@
+            <li class="menu-heading">YÖNETİM PANELİ</li>
+            <li class="@IsActive("Reports", "TuketimRaporlari")">
+                <a asp-action="TuketimRaporlari" asp-controller="Reports">
+                    <i class="bi bi-clipboard-data"></i> Tüketim Raporları
+                </a>
+            </li>
+            <li class="@IsActive("Meters", "SayacYonetimi")">
+                <a asp-action="SayacYonetimi" asp-controller="Meters">
+                    <i class="bi bi-speedometer"></i> Sayaç Yönetimi
+                </a>
+            </li>
+            <li class="@IsActive("Admin", "KullaniciYonetimi")">
+                <a asp-action="KullaniciYonetimi" asp-controller="Admin">
+                    <i class="bi bi-people"></i> Kullanıcı Yönetimi
+                </a>
+            </li>
+            <li class="@IsActive("Settings", "Ayarlar")">
+                <a asp-action="Ayarlar" asp-controller="Settings">
+                    <i class="bi bi-gear"></i> Ayarlar
+                </a>
+            </li>
+        </ul>
+    }
+
+    @* ------------------------------------------------------------------- *@
+    @* KULLANICI (CLIENT) MENÜSÜ - (Görsel 2'ye Uyan Menüler) *@
+    @* ------------------------------------------------------------------- *@
+
+    @if (isClient)
+    {
+        <ul class="nav-links">
+            @* Yeni bir <ul> başlatıldı *@
+            <li class="menu-heading">SU YÖNETİMİ</li>
+            <li class="@IsActive("Client", "TuketimRaporlari")">
+                <a asp-action="TuketimRaporlari" asp-controller="Client">
+                    <i class="bi bi-bar-chart"></i> Tüketim Raporları
+                </a>
+            </li>
+            <li class="@IsActive("Client", "GelecekTahminleri")">
+                <a asp-action="GelecekTahminleri" asp-controller="Client">
+                    <i class="bi bi-graph-up"></i> Gelecek Tahminleri
+                </a>
+            </li>
+            <li class="@IsActive("Client", "Uyarlar")">
+                <a asp-action="Uyarlar" asp-controller="Client">
+                    <i class="bi bi-bell"></i> Uyarılar
+                </a>
+            </li>
+            <li class="@IsActive("Client", "SayacYonetimi")">
+                @* Görsel 2'ye göre eklendi *@
+                <a asp-action="SayacYonetimi" asp-controller="Client">
+                    <i class="bi bi-speedometer"></i> Sayaç Yönetimi
+                </a>
+            </li>
+            <li class="@IsActive("Client", "Ayarlar")">
+                <a asp-action="Ayarlar" asp-controller="Client">
+                    <i class="bi bi-gear"></i> Ayarlar
+                </a>
+            </li>
+        </ul>
+    }
+
+    <div class="status-bar">
+        Tüm Servisler Aktif
+    </div>
+</div>

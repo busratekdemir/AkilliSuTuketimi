@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Akıllı Su Yönetimi</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dashboard-layout.css" asp-append-version="true" />
+</head>
+<body>
+
+
+    <div class="main-wrapper">
+        <aside class="sidebar-area">
+            @await Component.InvokeAsync("Sidebar")
+        </aside>
+
+        <div class="content-area">
+            <header class="top-header">
+                <div class="header-content-wrapper d-flex justify-content-end align-items-center py-2 px-4 bg-white border-bottom">
+
+                    <div class="user-info d-flex align-items-center gap-3">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @using System.Security.Claims
+                                                    var email = User.FindFirst(ClaimTypes.Email)?.Value ?? "admin@izsu.gov.tr";
+                            var role = User.FindFirst(ClaimTypes.Role)?.Value ?? "Admin";
+
+                            @* BİLDİRİM İKONU: Link hatası giderildi ve ID eklendi *@
+                            <a href="javascript:void(0)" id="notificationBell" class="text-muted text-decoration-none">
+                                <i class="bi bi-bell fs-5"></i>
+                            </a>
+
+                            @* AYARLAR AKTİF *@
+                            <a href="/Settings/Index" class="text-muted text-decoration-none">
+                                <i class="bi bi-gear fs-5"></i>
+                            </a>
+
+                            @* KULLANICI BİLGİLERİ *@
+                            <div class="user-meta text-end">
+                                <div class="fw-bold text-dark lh-1">@role</div>
+                                <div class="text-muted small">@email</div>
+                            </div>
+
+                            @* PROFİL İKONU *@
+                            <i class="bi bi-person-circle fs-3 text-primary"></i>
+
+                            @* ÇIKIŞ YAP BUTONU *@
+                            <form asp-controller="Home" asp-action="Logout" method="post" class="ms-2">
+                                <button type="submit" class="btn btn-outline-danger btn-sm d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>Çıkış Yap</span>
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a asp-controller="Home" asp-action="Login" class="btn btn-sm btn-primary">Giriş Yap</a>
+                            <a asp-controller="Home" asp-action="Register" class="btn btn-sm btn-outline-primary ms-2">Kayıt Ol</a>
+                        }
+                    </div>
+                </div>
+            </header>
+
+            <main role="main" class="main-panel-content">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted text-center py-3">
+        <div class="container-fluid">
+            &copy; 2025 - Akıllı Su Yönetimi
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @* ROL BAZLI BİLDİRİM SİSTEMİ *@
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const bell = document.getElementById('notificationBell');
+            const userRole = "@(User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value)";
+
+            if (bell) {
+                bell.onclick = function (e) {
+                    e.preventDefault();
+
+                    let content = "";
+                    let title = "";
+
+                    if (userRole === "Admin") {
+                        title = '<i class="bi bi-shield-lock-fill text-danger"></i> Sistem Uyarıları (Admin)';
+                        content = `
+                            <div class="text-start mt-3" style="font-size:0.9rem;">
+                                <div class="p-3 mb-2 bg-white rounded border-start border-danger border-4 shadow-sm">
+                                    <strong>Kritik Arıza:</strong> Bornova ana boru hattında basınç kaybı!
+                                </div>
+                                <div class="p-3 mb-2 bg-white rounded border-start border-info border-4 shadow-sm">
+                                    <strong>Sistem:</strong> Haftalık veri yedeklemesi tamamlandı.
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        title = '<i class="bi bi-bell-fill text-primary"></i> Bildirimleriniz';
+                        content = `
+                            <div class="text-start mt-3" style="font-size:0.9rem;">
+                                <div class="p-3 mb-2 bg-light rounded border-start border-primary border-4 shadow-sm">
+                                    <strong>Fatura:</strong> Kasım ayı faturanız (452.20 TL) oluşturuldu.
+                                </div>
+                                <div class="p-3 mb-2 bg-light rounded border-start border-warning border-4 shadow-sm">
+                                    <strong>Tasarruf:</strong> Su tüketiminiz bu ay %3.1 arttı.
+                                </div>
+                            </div>
+                        `;
+                    }
+
+                    Swal.fire({
+                        title: title,
+                        html: content,
+                        confirmButtonText: 'Anladım',
+                        confirmButtonColor: userRole === "Admin" ? "#dc3545" : "#0d6efd"
+                    });
+                };
+            }
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

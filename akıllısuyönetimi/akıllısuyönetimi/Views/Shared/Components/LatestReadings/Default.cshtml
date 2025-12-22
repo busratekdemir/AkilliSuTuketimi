@@ -1,0 +1,62 @@
+﻿@model List<ReadingViewModel>
+
+<div class="latest-readings-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Son Sayaç Okumaları</h3>
+        <button class="btn btn-primary">Dışa Aktar</button>
+    </div>
+    <p class="text-muted small">Anlık veri akışı</p>
+
+    <table class="table table-hover mt-3">
+        <thead>
+            <tr>
+                <th>Sayaç No</th>
+                <th>Lokasyon</th>
+                <th>Okuma Değeri</th>
+                <th>Zaman</th>
+                <th>Durum</th>
+                <th>İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SayacNo</td>
+                    <td>@item.Lokasyon</td>
+                    <td>@item.OkumaDegeri</td>
+                    <td>@item.Zaman</td>
+                    <td>
+                        <span class="badge @(item.Durum == "Anomali" ? "badge-danger" : "badge-success")">
+                            @item.Durum
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-eye"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    /* Geçici Stil: Bu stilleri dashboard-layout.css dosyanıza eklemeyi unutmayın! */
+    .latest-readings-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        margin-top: 20px;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .badge-success {
+        background-color: #28a745;
+        color: white;
+    }
+</style>

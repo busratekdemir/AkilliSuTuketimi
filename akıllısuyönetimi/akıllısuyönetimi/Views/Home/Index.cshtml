@@ -1,0 +1,265 @@
+﻿@using System.Security.Claims
+@{
+    ViewData["Title"] = "Akıllı Su Yönetimi Ana Paneli";
+
+    // Giriş yapan kullanıcının rolünü kontrol ediyoruz
+    var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+    bool isAdmin = userRole == "Admin";
+}
+
+@* 👇 KARŞILAMA KARTI 👇 *@
+<div class="card border-0 shadow-sm rounded-4 mb-4" style="background: linear-gradient(45deg, #0d6efd, #0dcaf0); color: white;">
+    <div class="card-body d-flex align-items-center justify-content-between p-4">
+        <div>
+            @if (isAdmin)
+            {
+                <h5 class="mb-1 fw-bold">Hoş Geldiniz, Admin!</h5>
+            }
+            else
+            {
+                <h5 class="mb-1 fw-bold">
+                    @* DisplayName kullanımı daha sağlıklıdır *@
+                    Hoş Geldiniz, @(User.Identity.Name ?? "Kullanıcı")!
+                </h5>
+            }
+        </div>
+        @* Hazır API'den gelen Hava Durumu Verileri *@
+        @if (ViewBag.Temp != null)
+        {
+            <div class="text-end d-flex align-items-center gap-3">
+                <div class="lh-1">
+                    <div class="fw-bold fs-4">@ViewBag.Temp °C</div>
+                    <div class="small text-capitalize">@ViewBag.WeatherDesc</div>
+                </div>
+                <img src="https://openweathermap.org/img/wn/@(ViewBag.WeatherIcon)@@2x.png" width="60" alt="Hava Durumu">
+            </div>
+        }
+    </div>
+</div>
+
+<div class="main-panel-title-container mb-4">
+    <h2 class="main-panel-title">Akıllı Su Yönetimi Ana Paneli</h2>
+    <p class="text-muted">@(isAdmin ? "Güncel su kaynakları durumu, tüketim analizleri ve anomali bildirimleri." : "Kişisel su tüketim analizleriniz ve kullanım trendiniz.")</p>
+</div>
+
+@* 1. İSTATİSTİK KARTLARI *@
+<div class="row dashboard-cards-group mb-5">
+    <div class="col-md-@(isAdmin ? "3" : "4")">
+        <div class="stat-card card p-3 h-100">
+            <div class="card-header border-0 p-0 text-muted small">
+                <i class="bi bi-bounding-box-circles text-primary me-1"></i> Toplam Kaynak Hacmi (M³)
+            </div>
+            <span class="main-value text-dark d-block mt-2">148.2 M</span>
+            <div class="card-footer p-0 mt-2 text-primary small">+8.5% Doluluk Artışı</div>
+        </div>
+    </div>
+
+    <div class="col-md-@(isAdmin ? "3" : "4")">
+        <div class="stat-card card p-3 h-100">
+            <div class="card-header border-0 p-0 text-muted small">
+                <i class="bi bi-bar-chart-fill text-success me-1"></i> Ortalama Doluluk (%)
+            </div>
+            <span class="main-value text-dark d-block mt-2">58.5%</span>
+            <div class="card-footer p-0 mt-2 text-success small">Yıllık Hedef: 75%</div>
+        </div>
+    </div>
+
+    <div class="col-md-@(isAdmin ? "3" : "4")">
+        <div class="stat-card card p-3 h-100">
+            <div class="card-header border-0 p-0 text-muted small">
+                <i class="bi bi-graph-up-arrow text-info me-1"></i> Son 30 Günlük Tüketim (M³)
+            </div>
+            @* Veritabanından gelen toplam tüketimi buraya bağladık *@
+            <span class="main-value text-dark d-block mt-2">@(ViewBag.TotalMonthlyUsage ?? "1.34") M</span>
+            <div class="card-footer p-0 mt-2 text-info small">-2.1% (Geçen Aya Göre)</div>
+        </div>
+    </div>
+
+    @if (isAdmin)
+    {
+        <div class="col-md-3">
+            <div class="stat-card card p-3 h-100">
+                <div class="card-header border-0 p-0 text-muted small">
+                    <i class="bi bi-exclamation-triangle-fill text-danger me-1"></i> Aktif Anomali Uyarısı
+                </div>
+                <span class="main-value text-dark d-block mt-2">@(ViewBag.MLAnomalies?.Count ?? 0)</span>
+                <div class="card-footer p-0 mt-2 text-danger small">Güncel ML Analizi</div>
+            </div>
+        </div>
+    }
+</div>
+
+@* 2. GRAFİK VE ANOMALİLER *@
+<div class="row dashboard-details-group mt-4 mb-5">
+    <div class="@(isAdmin ? "col-md-8" : "col-md-12")">
+        <div class="chart-area-container card p-4 h-100">
+            <h3>@(isAdmin ? "Su Tüketimi (m³) Trendi" : "Kişisel Su Tüketim Trendim (m³)")</h3>
+
+            <div class="d-flex justify-content-end mb-3 btn-group">
+                <button type="button" class="btn btn-sm btn-outline-secondary me-1" onclick="updateChart('daily', event)">Günlük</button>
+                <button type="button" class="btn btn-sm btn-secondary active me-1" onclick="updateChart('weekly', event)">Haftalık</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="updateChart('monthly', event)">Aylık</button>
+            </div>
+
+            <div style="height: 350px; padding: 15px;">
+                <canvas id="consumptionTrendChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    @if (isAdmin)
+    {
+        <div class="col-md-4">
+            <div class="anomaly-list-container p-4 card h-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>Son Aktif Anomaliler</h3>
+                    <span class="badge bg-danger">@(ViewBag.MLAnomalies?.Count ?? 0) Açık</span>
+                </div>
+
+                @if (ViewBag.MLAnomalies != null)
+                {
+                    foreach (var item in ViewBag.MLAnomalies)
+                    {
+                        <div class="anomaly-item mb-2">
+                            <span class="text-danger me-2"><i class="bi bi-exclamation-circle-fill"></i></span>
+                            <div>
+                                <div class="font-weight-bold">@item.Code | @item.Type</div>
+                                <div class="text-muted small">@item.Location - @item.Time</div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted small">Analiz verisi yüklenemedi...</p>
+                }
+                <a href="/Alerts/Index" class="btn btn-sm btn-outline-primary mt-3 w-100">Tüm Uyarılar Sayfasına Git</a>
+            </div>
+        </div>
+    }
+</div>
+
+@* 3. ÜRETİM KAYNAKLARI TABLOSU *@
+<div class="row mt-4">
+    <div class="col-md-12 p-4 production-table-container card">
+        <h3 class="mb-3"><i class="bi bi-droplet-fill me-1 text-primary"></i> Üretim Kaynakları - Temel Analiz Verileri</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover production-table small">
+                <thead>
+                    <tr>
+                        <th rowspan="2" class="align-middle text-nowrap" style="background-color:#f0f0f0; width: 25%;">Üretim Kaynağı</th>
+                        <th rowspan="2" class="align-middle text-nowrap" style="background-color:#f0f0f0; width: 10%;">Son Gün.</th>
+                        <th colspan="2" class="text-center text-white" style="background-color:#0dcaf0;">Son Durumu</th>
+                        <th colspan="2" class="text-center text-white" style="background-color:#6c757d;">Bir Önceki Yıla Ait Durum</th>
+                    </tr>
+                    <tr>
+                        <th style="background-color:#eaf8fb; width: 25%;">Toplam Su Hacmi (M³)</th>
+                        <th style="background-color:#eaf8fb; width: 10%;">Doluluk Oranı (%)</th>
+                        <th style="background-color:#f8f9fa; width: 20%;">Toplam Su Hacmi (M³)</th>
+                        <th style="background-color:#f8f9fa; width: 10%;">Doluluk Oranı (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.WaterResources != null)
+                    {
+                        foreach (var item in ViewBag.WaterResources)
+                        {
+                            <tr>
+                                <td>@item.SourceName</td> @* Baraj Adı *@
+                                <td>@item.UpdateDate</td> @* Son Güncelleme *@
+                                <td>@String.Format("{0:N0}", item.CurrentVolume)</td> @* ML'den gelen Hacim *@
+                                <td>%@item.CurrentRate</td> @* CSV'deki ORT_DOLULUK *@
+                                <td>@String.Format("{0:N0}", item.PrevVolume)</td>
+                                <td>%@item.PrevRate</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+         src="https://cdn.jsdelivr.net/npm/chart.js"
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('consumptionTrendChart').getContext('2d');
+            const isUserAdmin = @(isAdmin.ToString().ToLower());
+
+            // --- PYTHON SOA'DAN GELEN TAHMİN VERİLERİ ---
+            const dailyML = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.MLDaily ?? new List<double> { 0, 0, 0, 0, 0, 0, 0 }));
+            const weeklyML = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.MLPredictions ?? new List<double> { 0, 0, 0, 0, 0, 0, 0 }));
+            const monthlyML = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.MLMonthly ?? new List<double> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }));
+
+
+            const actualWeekly = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ChartData ?? new List<decimal>()));
+            const labelsWeekly = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ChartLabels ?? new List<string>()));
+
+            const dataOptions = {
+                daily: {
+                    labels: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '23:59'],
+                    actual: isUserAdmin ? [1200, 800, 2500, 3100, 2800, 3500, 2100] : [0.2, 0.1, 0.4, 0.5, 0.4, 0.6, 0.3],
+                    predicted: dailyML // SOA'dan gelen günlük veri
+                },
+                weekly: {
+                    labels: labelsWeekly.length > 0 ? labelsWeekly : ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'],
+                    actual: actualWeekly.length > 0 ? actualWeekly : (isUserAdmin ? [35000, 38000, 41000, 40000, 42000, 45000, 43000] : [0.5, 0.8, 0.4, 0.9, 1.1, 1.5, 1.2]),
+                    predicted: weeklyML // SOA'dan gelen haftalık veri
+                },
+                monthly: {
+                    labels: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+                    actual: isUserAdmin ? [150000, 165000, 158000, 172000, 160000, 155000, 180000, 175000, 165000, 170000, 155000, 160000] : [5.2, 6.1, 4.8, 7.2, 5.5, 5.0, 6.5, 6.0, 5.5, 5.8, 5.2, 5.4],
+                    predicted: monthlyML // SOA'dan gelen aylık veri
+                }
+            };
+
+            window.myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dataOptions.weekly.labels,
+                    datasets: [
+                        {
+                            label: 'Gerçek Tüketim',
+                            data: dataOptions.weekly.actual,
+                            borderColor: '#198754',
+                            backgroundColor: 'rgba(25, 135, 84, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        },
+                        {
+                            label: 'ML Tahmin Edilen',
+                            data: dataOptions.weekly.predicted,
+                            borderColor: '#0d6efd',
+                            borderDash: [5, 5],
+                            fill: false,
+                            tension: 0.4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: true, position: 'top' }
+                    }
+                }
+            });
+
+            window.updateChart = function(period, event) {
+                myChart.data.labels = dataOptions[period].labels;
+                myChart.data.datasets[0].data = dataOptions[period].actual;
+                myChart.data.datasets[1].data = dataOptions[period].predicted;
+                myChart.update();
+
+                const buttons = event.target.closest('.btn-group').querySelectorAll('.btn');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active', 'btn-secondary');
+                    btn.classList.add('btn-outline-secondary');
+                });
+                event.target.classList.add('active', 'btn-secondary');
+                event.target.classList.remove('btn-outline-secondary');
+            }
+        });
+    </script>
+}

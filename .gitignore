@@ -1,0 +1,64 @@
+# Bağımlılıklar (En önemli kısım, çok yer kaplar)
+node_modules/
+dist/
+
+# Güvenlik (API Key ve şifrelerin çalınmasını engeller)
+.env
+
+# İşletim sistemi ve editör dosyaları
+.DS_Store
+.vscode/
+npm-debug.log*
+
+# Python ML Servisi gereksizleri
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+
+
+
+## Visual Studio Gereksiz Dosyalar
+.vs/
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## NuGet Paketleri
+# Paketleri GitHub'a yüklemeyin, NuGet restore ile otomatik indirilir
+packages/
+!packages/build/
+project.lock.json
+project.fragment.lock.json
+
+## Web Dosyaları & Runtime
+wwwroot/lib/
+node_modules/
+/appsettings.Development.json
+/appsettings.Production.json
+
+## Python (Flask API) Dosyaları
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+## Veritabanı Dosyaları
+*.mdf
+*.ldf
+*.db
+*.db-shm
+*.db-wal
+
+## Log Dosyaları
+*.log
+logs/

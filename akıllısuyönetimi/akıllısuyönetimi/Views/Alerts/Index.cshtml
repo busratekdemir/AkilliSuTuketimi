@@ -1,0 +1,285 @@
+﻿@* Views/Alerts/Index.cshtml *@
+@{
+    ViewData["Title"] = "Uyarılar ve Kaçak Tespiti";
+}
+
+<div class="container-fluid py-4 px-4" style="background-color: #f8fbff; min-height: 100vh;">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-0">Uyarılar ve Kaçak Tespiti</h2>
+            <p class="text-muted mb-0">Anormal tüketim ve olası kaçak bildirimleri</p>
+        </div>
+        <button class="btn btn-primary rounded-3 px-4 py-2 fw-bold shadow-sm">
+            <i class="bi bi-cloud-download me-2"></i> Rapor Al
+        </button>
+    </div>
+
+    <div class="row g-4 mb-4">
+        @* --- 1. AKTİF UYARI KARTI --- *@
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100" style="border: 1px solid #dee2e6 !important;">
+                <div class="p-2 px-3 bg-light text-muted fw-bold border-bottom" style="font-size: 0.8rem; letter-spacing: 0.5px;">AKTİF UYARI</div>
+                <div class="card-body p-4 text-center">
+                    <h1 class="fw-bold mb-0 text-danger" style="font-size: 3.5rem;">
+                        @{
+                            double vAct;
+                            string strAct = ViewBag.ActiveAlertCount?.ToString() ?? "0";
+                            bool hasAct = double.TryParse(strAct, out vAct);
+                        }
+                        @(hasAct? vAct.ToString("N0") : "0")
+                    </h1>
+                </div>
+                <div class="p-2 px-3 bg-white border-top text-danger fw-bold small">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> Müdahale Bekleniyor
+                </div>
+            </div>
+        </div>
+
+        @* --- 2. OLASI KAÇAK KARTI --- *@
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100 border">
+                <div class="p-2 px-3 bg-light text-muted fw-bold border-bottom" style="font-size: 0.8rem;">OLASI KAÇAK</div>
+                <div class="card-body p-4 text-center">
+                    <h1 class="fw-bold mb-0 text-dark" style="font-size: 3.5rem;">
+                        @{
+                            double vLeak;
+                            string strLeak = ViewBag.PossibleLeakCount?.ToString() ?? "0";
+                            bool hasLeak = double.TryParse(strLeak, out vLeak);
+                        }
+                        @(hasLeak? vLeak.ToString("N0") : "0")
+                    </h1>
+                </div>
+                <div class="p-2 px-3 bg-white border-top text-danger fw-bold small"><i class="bi bi-x-octagon-fill me-1"></i> Kritik Durum</div>
+            </div>
+        </div>
+
+        @* --- 3. ANORMAL KULLANIM KARTI --- *@
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100 border">
+                <div class="p-2 px-3 bg-light text-muted fw-bold border-bottom" style="font-size: 0.8rem;">ANORMAL KULLANIM</div>
+                <div class="card-body p-4 text-center">
+                    <h1 class="fw-bold mb-0 text-dark" style="font-size: 3.5rem;">
+                        @{
+                            double vAbn;
+                            string strAbn = ViewBag.AbnormalUsageCount?.ToString() ?? "0";
+                            bool hasAbn = double.TryParse(strAbn, out vAbn);
+                        }
+                        @(hasAbn? vAbn.ToString("N0") : "0")
+                    </h1>
+                </div>
+                <div class="p-2 px-3 bg-white border-top text-warning fw-bold small"><i class="bi bi-graph-up-arrow me-1"></i> Yüksek Öncelik</div>
+            </div>
+        </div>
+
+        @* --- 4. ÇÖZÜLDÜ KARTI --- *@
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden h-100 border">
+                <div class="p-2 px-3 bg-light text-muted fw-bold border-bottom" style="font-size: 0.8rem;">ÇÖZÜLDÜ</div>
+                <div class="card-body p-4 text-center">
+                    <h1 class="fw-bold mb-0 text-success" style="font-size: 3.5rem;">
+                        @{
+                            double vSol;
+                            string strSol = ViewBag.SolvedCount?.ToString() ?? "0";
+                            bool hasSol = double.TryParse(strSol, out vSol);
+                        }
+                        @(hasSol? vSol.ToString("N0") : "147")
+                    </h1>
+                </div>
+                <div class="p-2 px-3 bg-white border-top text-success fw-bold small"><i class="bi bi-check-circle-fill me-1"></i> Bu Ay İçinde</div>
+            </div>
+        </div>
+    </div>
+    
+
+    @* --- FİLTRELEME VE GRAFİK ALANLARI --- *@
+ 
+       
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+                <h5 class="fw-bold text-dark"><i class="bi bi-bar-chart-line me-2 text-primary"></i> Haftalık Uyarı Trendi</h5>
+                <p class="text-muted small">Son 7 günde tespit edilen uyarı sayısı</p>
+                <div style="height: 300px;">
+                    <canvas id="alertTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @* --- DETAYLI UYARI LİSTESİ (Python Detayları) --- *@
+    <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white">
+        <div class="bg-light p-3 border-bottom">
+            <h6 class="mb-0 fw-bold"><i class="bi bi-list-ul me-2"></i> Detaylı Uyarı Listesi</h6>
+        </div>
+        <div class="p-0">
+            @if (ViewBag.AlertList != null)
+            {
+                foreach (var alert in ViewBag.AlertList)
+                {
+                    <div class="alert-card p-4 border-bottom" style="border-left: 5px solid @(alert.Severity == "Kritik" ? "#dc3545" : "#ffc107");">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5 class="fw-bold @(alert.Severity == "Kritik" ? "text-danger" : "text-warning")">
+                                    <span class="severity-tag">@alert.Severity</span>: @alert.Type
+                                </h5>
+                                <p class="mb-1"><strong>Sayaç:</strong> @alert.Code — @alert.Description</p>
+                                <small class="text-muted">
+                                    <i class="bi bi-geo-alt"></i> @alert.Location | <i class="bi bi-clock"></i> @alert.Time | <i class="bi bi-droplet"></i> @alert.Value
+                                </small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge target-status border py-2 px-3 mb-2" style="color: #dc3545; border-color: #dc3545;">
+                                    <i class="bi bi-hourglass-split me-1"></i> İnceleniyor
+                                </span><br>
+                                <button class="btn btn-dark btn-sm js-detail-btn">Detaylı İncele</button>
+                                <button class="btn btn-success btn-sm js-resolve-btn">Çözüldü İşaretle</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="p-5 text-center text-muted">
+                    <i class="bi bi-check2-circle fs-1 d-block mb-3"></i>
+                    Şu an için aktif bir uyarı bulunmamaktadır.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        (function() {
+                   // --- 1. HAFTALIK UYARI TRENDİ GRAFİĞİ ---
+        const alertCtx = document.getElementById('alertTrendChart');
+        if (alertCtx) {
+            new Chart(alertCtx, {
+                type: 'bar',
+                data: {
+                    // ESKİ HALİ: labels: ['13 Ara', '14 Ara', ...]
+                    // YENİ HALİ: Python'dan gelen gerçek DailyLabels verisini kullanıyoruz
+                    labels: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.MLDailyLabels ?? new List<string> { "13 Ara", "14 Ara", "15 Ara", "16 Ara", "17 Ara", "18 Ara", "19 Ara" })),
+
+                    datasets: [{
+                        label: 'Su Tüketimi (m³)',
+                  
+                        // YENİ HALİ: Artık 14.000 değil, gerçek m³ değerleri gelecek
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.MLDaily ?? new List<double> { 0, 0, 0, 0, 0, 0, 0 })),
+
+                        backgroundColor: 'rgba(13, 110, 253, 0.8)',
+                        borderRadius: 6,
+                        hoverBackgroundColor: '#0d6efd'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: '#f0f0f0' },
+                            title: { display: true, text: 'm³/gün' } // Birim eklendi
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+            // --- 2. FİLTRELEME VE BUTON ETKİLEŞİMLERİ ---
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('js-resolve-btn')) {
+                    e.preventDefault();
+                    const btn = e.target;
+                    const alertCard = btn.closest('.alert-card');
+                    if (confirm('Bu uyarıyı tamamlandı olarak işaretlemek istediğinize emin misiniz?')) {
+                        btn.innerText = 'Tamamlandı';
+                        btn.className = 'btn btn-secondary btn-sm disabled';
+                        const statusTag = alertCard.querySelector('.target-status');
+                        if (statusTag) {
+                            statusTag.style.backgroundColor = '#198754';
+                            statusTag.style.color = '#ffffff';
+                            statusTag.innerHTML = '<i class="bi bi-check-circle me-1"></i> Çözüldü';
+                        }
+                    }
+                }
+            });
+            // Rapor Al butonu ve diğer JS fonksiyonları yapısını korur.
+            // --- 3. RAPOR AL BUTONU ---
+            const reportBtn = Array.from(document.querySelectorAll('button')).find(el => el.innerText.includes('Rapor Al'));
+
+            if (reportBtn) {
+                reportBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const btn = this;
+                    const originalContent = btn.innerHTML;
+
+                    btn.disabled = true;
+                    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Hazırlanıyor...';
+
+                    setTimeout(() => {
+                        const reportData = `UYARILAR VE KAÇAK TESPİT RAPORU\n` +
+                            `Tarih: ${new Date().toLocaleString('tr-TR')}\n` +
+                            `--------------------------------------------------\n` +
+                            `AKTİF UYARI: ${document.querySelectorAll('h1.fw-bold')[0].innerText.trim()}\n` +
+                            `OLASI KAÇAK: ${document.querySelectorAll('h1.fw-bold')[1].innerText.trim()}\n` +
+                            `ANORMAL KULLANIM: ${document.querySelectorAll('h1.fw-bold')[2].innerText.trim()}\n` +
+                            `ÇÖZÜLDÜ: ${document.querySelectorAll('h1.fw-bold')[3].innerText.trim()}\n` +
+                            `--------------------------------------------------\n` +
+                            `Durum: Sistem Analizi Tamamlandı.`;
+
+                        const blob = new Blob([reportData], { type: 'text/plain;charset=utf-8' });
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'ML_Sistem_Uyari_Raporu.txt';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+
+                        btn.disabled = false;
+                        btn.innerHTML = originalContent;
+                    }, 1200);
+                });
+            }
+
+            // --- 4. LİSTE İÇİ ETKİLEŞİMLER ---
+            document.addEventListener('click', function(e) {
+                if (e.target && e.target.classList.contains('js-resolve-btn')) {
+                    e.preventDefault();
+                    const btn = e.target;
+                    const alertCard = btn.closest('.alert-card');
+
+                    if (confirm('Bu uyarıyı tamamlandı olarak işaretlemek istediğinize emin misiniz?')) {
+                        btn.innerText = 'Tamamlandı';
+                        btn.className = 'btn btn-secondary btn-sm disabled';
+                        btn.disabled = true;
+
+                        const statusTag = alertCard.querySelector('.target-status');
+                        if (statusTag) {
+                            statusTag.style.backgroundColor = '#198754';
+                            statusTag.style.color = '#ffffff';
+                            statusTag.style.borderColor = '#198754';
+                            statusTag.innerHTML = '<i class="bi bi-check-circle me-1"></i> Çözüldü';
+                        }
+                    }
+                }
+
+                if (e.target && e.target.classList.contains('js-detail-btn')) {
+                    e.preventDefault();
+                    const btn = e.target;
+                    btn.disabled = true;
+                    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Açılıyor...';
+                    setTimeout(() => { window.location.href = '/Meters/Index'; }, 800);
+                }
+            });
+        })();
+    </script>
+}

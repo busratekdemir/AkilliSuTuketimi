@@ -1,0 +1,210 @@
+﻿@* Views/Forecast/Index.cshtml *@
+@{
+    ViewData["Title"] = "Gelecek Tahminleri";
+}
+
+<h2 class="main-panel-title">Gelecek Tahminleri</h2>
+<p class="text-muted">Önümüzdeki dönem su tüketim tahminleri ve öneriler</p>
+
+<div class="row dashboard-cards-group mb-4">
+    @* --- YARIN KARTI --- *@
+    <div class="col-md-3">
+        <div class="stat-card p-0" style="background-color: var(--primary-blue); color: white;">
+            <div class="p-3">
+                <i class="bi bi-calendar-check" style="font-size: 1.5em; margin-bottom: 5px;"></i>
+                <div class="card-header border-0 p-0 text-white">Yarın</div>
+                <span id="stat-tomorrow" class="main-value text-white">
+                    @{
+                        double vNext;
+                        // Hata çözümü: Önce stringe alıp belirsizliği gideriyoruz
+                        string strNext = ViewBag.ForecastNextDay?.ToString() ?? "";
+                        bool hasNext = double.TryParse(strNext, out vNext);
+                    }
+                    @(hasNext? vNext.ToString("N0") : "46.500") m³
+                </span>
+                <p class="small m-0">bekleniyor</p>
+            </div>
+        </div>
+    </div>
+
+    @* --- BU HAFTA KARTI --- *@
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="card-header"><i class="bi bi-graph-up-arrow text-success"></i> Bu Hafta</div>
+            <div class="card-body">
+                <span id="stat-week" class="main-value">
+                    @{
+                        double v7;
+                        string str7 = ViewBag.Forecast7Days?.ToString() ?? "";
+                        bool has7 = double.TryParse(str7, out v7);
+                    }
+                    @(has7? v7.ToString("N0") : "315.200") m³
+                </span>
+            </div>
+            <div class="card-footer text-muted">tahmini</div>
+        </div>
+    </div>
+
+    @* --- BU AY KARTI --- *@
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="card-header"><i class="bi bi-graph-up-arrow" style="color: purple;"></i> Bu Ay</div>
+            <div class="card-body">
+                <span id="stat-month" class="main-value">
+                    @{
+                        double v30;
+                        string str30 = ViewBag.Forecast30Days?.ToString() ?? "";
+                        bool has30 = double.TryParse(str30, out v30);
+                    }
+                    @(has30? v30.ToString("N0") : "1.340.000") m³
+                </span>
+            </div>
+            <div class="card-footer text-muted">tahmini</div>
+        </div>
+    </div>
+</div>
+
+<div class="row dashboard-details-group mb-4">
+    <div class="col-md-12 chart-area-container p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 id="chart-title">7 Günlük Tüketim Tahmini</h3>
+            <div class="time-filters">
+                <button class="btn btn-primary btn-sm active range-filter" data-range="7">7 Gün</button>
+                <button class="btn btn-light btn-sm range-filter" data-range="14">14 Gün</button>
+                <button class="btn btn-light btn-sm range-filter" data-range="30">30 Gün</button>
+            </div>
+        </div>
+
+        <div style="height: 400px; padding: 15px;">
+            <canvas id="forecastChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card p-4 h-100" style="background-color: #e8f5e9; border-left: 5px solid #4CAF50; border-radius: 12px; border-top:none; border-right:none; border-bottom:none;">
+            <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-lightbulb-fill text-success me-3" style="font-size: 1.5em;"></i>
+                <h4 class="mb-0 text-success fw-bold">Tasarruf Önerileri</h4>
+            </div>
+            <ul class="list-unstyled small fw-medium">
+                <li class="mb-2">• Hafta sonu tüketim %12 azalıyor. Bu dönemde bakım işlemleri planlanabilir.</li>
+                <li class="mb-2">• Konak bölgesinde sabah 06:00-09:00 arası yoğunluk var. Depo kapasitesi artırılabilir.</li>
+                <li>• Gelecek hafta %8 artış bekleniyor. Yedek pompa sistemleri kontrol edilmeli.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card p-4 h-100" style="background-color: #fff3e0; border-left: 5px solid #ff9800; border-radius: 12px; border-top:none; border-right:none; border-bottom:none;">
+            <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-exclamation-triangle-fill text-warning me-3" style="font-size: 1.5em;"></i>
+                <h4 class="mb-0 text-warning fw-bold">Dikkat Edilmesi Gerekenler</h4>
+            </div>
+            <ul class="list-unstyled small fw-medium">
+                <li class="mb-2">• Perşembe günü en yüksek tüketim bekleniyor (47,500 m³).</li>
+                <li class="mb-2">• Bornova ilçesinde trend artışta. İzleme sıkılaştırılmalı.</li>
+                <li>• Hava sıcaklığı artışı nedeniyle tüketim %5-7 yükselebilir.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        (function() {
+            const forecastCtx = document.getElementById('forecastChart');
+            if (!forecastCtx) return;
+
+            // Python SOA Verilerini Karşıla
+            const mlActual = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.MLDaily ?? new List<double>()));
+            const forecast7 = parseFloat("@(ViewBag.Forecast7Days ?? "315200")".replace(",", "."));
+            const forecast14 = parseFloat("@(ViewBag.Forecast14Days ?? "630000")".replace(",", "."));
+            const forecast30 = parseFloat("@(ViewBag.Forecast30Days ?? "1340000")".replace(",", "."));
+
+            let forecastChart = new Chart(forecastCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'Gerçekleşen Tüketim (ML)',
+                            data: [],
+                            borderColor: 'rgb(0, 123, 255)',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4
+                        },
+                        {
+                            label: 'Tahmini Tüketim (ML)',
+                            data: [],
+                            borderColor: 'rgb(40, 167, 69)',
+                            backgroundColor: 'rgba(40, 167, 69, 0.05)',
+                            borderDash: [5, 5],
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: false } },
+                    plugins: { legend: { position: 'bottom' } }
+                }
+            });
+
+            updateForecastChart(7);
+
+            document.querySelectorAll('.range-filter').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('.range-filter').forEach(b => {
+                        b.classList.remove('btn-primary', 'active'); b.classList.add('btn-light');
+                    });
+                    this.classList.replace('btn-light', 'btn-primary');
+                    this.classList.add('active');
+                    const range = parseInt(this.dataset.range);
+                    updateForecastChart(range);
+                });
+            });
+
+            function updateForecastChart(days) {
+                const newLabels = [];
+                const newActualData = [];
+                const newForecastData = [];
+                const today = new Date();
+                const sourceActual = mlActual.length > 0 ? mlActual : [44000, 43500, 44200, 46000, 43800, 45500];
+
+                for (let i = 0; i < sourceActual.length; i++) {
+                    const d = new Date();
+                    d.setDate(today.getDate() - (sourceActual.length - 1 - i));
+                    newLabels.push(d.toLocaleDateString('tr-TR', { day: '2-digit', month: 'short' }));
+                    newActualData.push(sourceActual[i]);
+                    newForecastData.push(null); // Grafikte sıfıra çökme hatasını önler
+                }
+
+                newForecastData[newForecastData.length - 1] = newActualData[newActualData.length - 1];
+
+                const totalForecast = (days === 7 ? forecast7 : (days === 14 ? forecast14 : forecast30));
+                const dailyAverage = totalForecast / days;
+
+                for (let i = 1; i <= days; i++) {
+                    const d = new Date();
+                    d.setDate(today.getDate() + i);
+                    newLabels.push(d.toLocaleDateString('tr-TR', { day: '2-digit', month: 'short' }));
+                    newActualData.push(null);
+                    newForecastData.push(dailyAverage + (Math.random() * 2000 - 1000));
+                }
+
+                forecastChart.data.labels = newLabels;
+                forecastChart.data.datasets[0].data = newActualData;
+                forecastChart.data.datasets[1].data = newForecastData;
+                forecastChart.update();
+            }
+        })();
+    </script>
+}

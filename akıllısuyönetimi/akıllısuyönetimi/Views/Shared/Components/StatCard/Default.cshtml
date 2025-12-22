@@ -1,0 +1,14 @@
+﻿@model StatCardViewModel
+
+<div class="stat-card">
+    <div class="card-header">
+        @Model.Title
+    </div>
+    <div class="card-body">
+        <span class="main-value">@Model.Value</span>
+        <i class="icon bi @Model.IconClass"></i>
+    </div>
+    <div class="card-footer @Model.ChangeColorClass">
+        @Model.ChangeText son 24 saat
+    </div>
+</div>

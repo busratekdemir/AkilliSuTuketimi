@@ -1,0 +1,139 @@
+﻿@using System.Security.Claims
+@{
+    // 1. ADIM: Giriş yapan kullanıcının bilgilerini Claims üzerinden alıyoruz
+    var userRole = User.FindFirst(ClaimTypes.Role)?.Value;
+    bool isAdmin = userRole == "Admin";
+
+    // E-posta adresi genellikle User.Identity.Name veya ClaimTypes.Email içindedir
+    var emailAddress = User.FindFirst(ClaimTypes.Email)?.Value ?? User.Identity.Name;
+
+    // --- KRİTİK DÜZELTME BURASI ---
+    var firstName = User.FindFirst(ClaimTypes.GivenName)?.Value;
+    var lastName = User.FindFirst(ClaimTypes.Surname)?.Value;
+
+    var displayName = User.FindFirst(ClaimTypes.Name)?.Value;
+    if (string.IsNullOrEmpty(firstName) == false || string.IsNullOrEmpty(lastName) == false)
+    {
+        displayName = $"{firstName} {lastName}";
+    }
+
+    if (string.IsNullOrEmpty(displayName) || displayName == emailAddress)
+    {
+        displayName = isAdmin ? "Admin Kullanıcı" : "Ahmet Yılmaz";
+    }
+
+    var subscriberId = User.FindFirst("SubscriberNo")?.Value ?? "19234567";
+
+    ViewData["Title"] = "Ayarlar";
+}
+
+<h2 class="main-panel-title">Ayarlar</h2>
+<p class="text-muted">@(isAdmin ? "Profil ve kurumsal sistem bilgilerini görüntüleyin." : "Kişisel profil ve bildirim tercihlerinizi yönetin.")</p>
+
+<div class="latest-readings-container p-4">
+    <ul class="nav nav-tabs mb-4" id="settingsTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="true">
+                <i class="bi bi-person-vcard me-2"></i> @(isAdmin ? "Kurumsal Profil" : "Kişisel Profilim")
+            </button>
+        </li>
+        @* 👇 BİLDİRİM TERCİHLERİ SEKME BUTONU (SADECE KULLANICI İÇİN) 👇 *@
+        @if (!isAdmin)
+        {
+            <li class="nav-item" role="presentation">
+                <button class="nav-link fw-bold" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button" role="tab" aria-controls="notifications" aria-selected="false">
+                    <i class="bi bi-bell-fill me-2"></i> Bildirim Tercihleri
+                </button>
+            </li>
+        }
+    </ul>
+
+    <div class="tab-content" id="settingsTabContent">
+        @* PROFİL SEKMESİ *@
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <h4 class="mb-4 fw-bold">@(isAdmin ? "Kullanıcı ve Birim Bilgileri" : "Abone ve İletişim Bilgileri")</h4>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <label class="form-label text-muted small fw-bold text-uppercase">@(isAdmin ? "Yetkili Ad Soyad" : "Abone Ad Soyad")</label>
+                    <div class="p-3 bg-light border rounded-3 text-dark fw-medium">
+                        @displayName
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label text-muted small fw-bold text-uppercase">@(isAdmin ? "Kurumsal E-posta" : "E-posta Adresi")</label>
+                    <div class="p-3 bg-light border rounded-3 text-dark fw-medium">
+                        @emailAddress
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label text-muted small fw-bold text-uppercase">@(isAdmin ? "Bağlı Olduğu Birim" : "Abone Numarası")</label>
+                    <div class="p-3 bg-light border rounded-3 text-dark fw-medium">
+                        @(isAdmin ? "İZSU Bilgi İşlem Dairesi Başkanlığı" : subscriberId)
+                    </div>
+                </div>
+            </div>
+
+            @if (isAdmin)
+            {
+                <div class="alert alert-secondary mt-5 border-0 rounded-4 d-flex align-items-center bg-opacity-10">
+                    <i class="bi bi-shield-lock-fill fs-3 me-3 text-secondary"></i>
+                    <div class="small">
+                        <strong>Bilgi Güvenliği Notu:</strong> Bu sayfadaki bilgiler merkezi yönetim tarafından tanımlanmıştır ve güvenlik nedeniyle kullanıcı tarafından değiştirilemez.
+                    </div>
+                </div>
+            }
+        </div>
+
+        @* 👇 BİLDİRİM TERCİHLERİ SEKME İÇERİĞİ (SADECE KULLANICI İÇİN) 👇 *@
+        @if (!isAdmin)
+        {
+            <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                <h4 class="mb-4 fw-bold">Bildirim Kanalları</h4>
+                <p class="text-muted small mb-4">Hangi durumlarda bildirim almak istediğinizi seçiniz.</p>
+
+                <div class="list-group list-group-flush border rounded-3">
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <h6 class="mb-0 fw-bold">E-posta Bildirimleri</h6>
+                            <small class="text-muted">Faturalar ve raporlar e-posta ile gönderilsin.</small>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="emailSwitch" checked>
+                        </div>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                        <div>
+                            <h6 class="mb-0 fw-bold">SMS Bildirimleri</h6>
+                            <small class="text-muted">Kritik su kesintileri ve uyarılar telefonunuza gelsin.</small>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="smsSwitch">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                    <button class="btn btn-primary px-4 py-2 fw-bold rounded-3" onclick="saveSettings()">Tercihleri Kaydet</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function saveSettings() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Başarılı!',
+                text: 'Bildirim tercihleriniz başarıyla güncellendi.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+    </script>
+}

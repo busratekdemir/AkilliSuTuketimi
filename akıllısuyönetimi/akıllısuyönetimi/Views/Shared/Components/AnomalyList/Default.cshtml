@@ -1,0 +1,32 @@
+﻿@model List<akıllısuyönetimi.ViewComponents.AnomalyItemViewModel>
+
+<div class="anomaly-list-container">
+    <div class="list-header">
+        <h5 class="header-title">Son Anomaliler</h5>
+        <span class="today-tag">Bugün</span>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var item in Model)
+        {
+            // SeverityClass'ı (danger, warning) CSS sınıfı olarak kullanıyoruz
+            <div class="anomaly-item @item.SeverityClass">
+                <div class="item-icon">
+                    <i class="bi bi-exclamation-circle-fill"></i>
+                </div>
+                <div class="item-details">
+                    <div class="item-id">@item.Id</div>
+                    <div class="item-time">@item.TimeAgo</div>
+                    <div class="item-description">@item.Description</div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-anomaly-message">
+            <p>Son 24 saatte herhangi bir anomali tespit edilmemiştir.</p>
+        </div>
+    }
+</div>

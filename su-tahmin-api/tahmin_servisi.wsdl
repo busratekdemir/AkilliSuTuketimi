@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions name="PredictionService" 
+    targetNamespace="http://www.su-tahmin-api.com/wsdl/PredictionService/"
+    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://www.su-tahmin-api.com/wsdl/PredictionService/">
+
+    <types>
+        <xsd:schema targetNamespace="http://www.su-tahmin-api.com/wsdl/PredictionService/">
+            
+            <xsd:element name="GetPrediction">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Trigger" type="xsd:boolean" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            
+            <xsd:element name="GetPredictionResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="PredictionResult" type="xsd:double"/>
+                        <xsd:element name="Message" type="xsd:string"/>
+                        <xsd:element name="PredictionID" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:complexType name="HistoricalPrediction">
+                <xsd:sequence>
+                    <xsd:element name="ID" type="xsd:int"/>
+                    <xsd:element name="PredictionDate" type="xsd:string"/>
+                    <xsd:element name="FeaturesJSON" type="xsd:string"/>
+                    <xsd:element name="PredictionResult" type="xsd:double"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+            <xsd:element name="GetPredictionHistory">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="UserID" type="xsd:int" minOccurs="0"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+            <xsd:element name="GetPredictionHistoryResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="Predictions" type="tns:HistoricalPrediction" minOccurs="0" maxOccurs="unbounded"/>
+                        <xsd:element name="Message" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+
+        </xsd:schema>
+    </types>
+
+    <message name="GetPredictionRequestMsg">
+        <part name="parameters" element="tns:GetPrediction"/>
+    </message>
+    <message name="GetPredictionResponseMsg">
+        <part name="parameters" element="tns:GetPredictionResponse"/>
+    </message>
+    
+    <message name="GetPredictionHistoryRequestMsg">
+        <part name="parameters" element="tns:GetPredictionHistory"/>
+    </message>
+    <message name="GetPredictionHistoryResponseMsg">
+        <part name="parameters" element="tns:GetPredictionHistoryResponse"/>
+    </message>
+
+    <portType name="PredictionServicePort">
+        <operation name="GetPrediction">
+            <input message="tns:GetPredictionRequestMsg"/>
+            <output message="tns:GetPredictionResponseMsg"/>
+        </operation>
+        <operation name="GetPredictionHistory">
+            <input message="tns:GetPredictionHistoryRequestMsg"/>
+            <output message="tns:GetPredictionHistoryResponseMsg"/>
+        </operation>
+    </portType>
+
+    <binding name="PredictionServiceBinding" type="tns:PredictionServicePort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetPrediction">
+            <soap:operation soapAction="http://www.su-tahmin-api.com/GetPrediction"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+        <operation name="GetPredictionHistory">
+            <soap:operation soapAction="http://www.su-tahmin-api.com/GetPredictionHistory"/>
+            <input><soap:body use="literal"/></input>
+            <output><soap:body use="literal"/></output>
+        </operation>
+    </binding>
+
+    <service name="PredictionService">
+        <port name="PredictionServicePort" binding="tns:PredictionServiceBinding">
+            <soap:address location="http://localhost:3000/soap/prediction"/>
+        </port>
+    </service>
+</definitions>

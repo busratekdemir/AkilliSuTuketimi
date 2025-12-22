@@ -1,0 +1,35 @@
+﻿@* Views/Shared/Components/Sidebar/Default.cshtml *@
+@model List<SidebarMenuItem>
+
+<div class="logo-section">
+    <div class="logo-icon"><i class="bi bi-droplet"></i></div>
+    <div class="logo-text">IZSU Akıllı Su Yönetimi</div>
+</div>
+
+<ul class="nav-links">
+
+    @* Controller'dan gelen entegre menü listesini döngüye alıyoruz *@
+    @foreach (var item in Model)
+    {
+        @* YÖNETİCİYE ÖZEL İDARİ KISIMLAR ÖNCESİNDE ÇİZGİ EKLEME KONTROLÜ *@
+        @* Bu, sadece Admin giriş yaptığında (ve bu öğeler modelde olduğunda) çalışır. *@
+        @if (item.Name == "Kullanıcı Yönetimi")
+        {
+            @* YÖNETİM PANELİ başlığı yerine, tek liste istediğiniz için, bir ayırıcı (separator) kullanıyoruz. *@
+            <li class="menu-separator"></li>
+        }
+
+        <li class="@(item.IsActive ? "active" : "")">
+            <a asp-controller="@item.Controller" asp-action="@item.Action">
+                <i class="bi @item.IconClass"></i>
+                <span>@item.Name</span>
+            </a>
+        </li>
+    }
+
+</ul>
+
+<div class="system-status">
+    <i class="bi bi-circle-fill active-indicator"></i>
+    <p>Tüm Servisler Aktif</p>
+</div>
